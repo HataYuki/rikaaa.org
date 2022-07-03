@@ -10,7 +10,7 @@ let firebaseApp;
 if (typeof window === 'undefined') {
     const admin = require('firebase-admin')
     if (!admin.apps.length) {
-        const serviceAccount = require('serviceAccountKey.json')
+        const serviceAccount = require('serviceAccountKey.js')
         firebaseApp = admin.initializeApp({
             credential: admin.credential.cert(serviceAccount),
             databaseURL: firebaseConfig.databaseURL,
