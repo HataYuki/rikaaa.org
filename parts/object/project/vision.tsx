@@ -8,7 +8,7 @@ const Vision: NextPage = () => {
             <div className={Style.wrapper}>
                 <div className={Style.vision}>
                     <div className={Style.img}>
-                        <Image src={'/test1.png'} layout="fill" objectFit="cover"></Image>
+                        <Image src={'/dammy.jpeg'} layout="fill" objectFit="cover"></Image>
                     </div>
                     <div className={Style.textBlock}>
                         <div>
@@ -23,7 +23,7 @@ const Vision: NextPage = () => {
                 </div>
                 <div className={Style.vision}>
                     <div className={Style.img}>
-                        <Image src={'/test1.png'} layout="fill" objectFit="cover"></Image>
+                        <Image src={'/dammy.jpeg'} layout="fill" objectFit="cover"></Image>
                     </div>
                     <div className={Style.textBlock}>
                         <div>
