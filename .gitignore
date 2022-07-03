@@ -34,9 +34,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-# firebase
-firebaseConfig.js
-serviceAccountKey.json
+# .env(firebase params)
+.env
 
 # phpStorm
 .idea/*
