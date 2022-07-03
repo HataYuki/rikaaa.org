@@ -1,0 +1,35 @@
+{
+  "name": "rikaaa.org",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && next export",
+    "start": "next start",
+    "lint": "next lint",
+    "server": "http-server out/ -p 8000"
+  },
+  "dependencies": {
+    "clsx": "^1.1.1",
+    "destyle.css": "^3.0.2",
+    "firebase": "8.10.0",
+    "firebase-admin": "9.8.0",
+    "flamelink": "^1.0.0-rc.1",
+    "next": "^12.2.0",
+    "normalize.css": "^8.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.4.0",
+    "react-intersection-observer": "^9.3.3",
+    "simple-react-validator": "^1.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.34",
+    "@types/react": "18.0.9",
+    "@types/react-dom": "18.0.4",
+    "eslint": "8.15.0",
+    "eslint-config-next": "12.1.6",
+    "sass": "^1.52.3",
+    "typescript": "4.6.4"
+  }
+}

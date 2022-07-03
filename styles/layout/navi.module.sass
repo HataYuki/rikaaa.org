@@ -1,0 +1,36 @@
+@import "styles/foundation/font.module"
+@import "styles/foundation/variable"
+
+.root
+  position: fixed
+  width: 100vw
+  height: 100vh
+  top: 0
+  color: $white
+  text-align: left
+
+  &.inVisible
+    display: none
+
+  &.visible
+    display: block
+
+  > div
+    background-color: rgba($black, 0.9)
+    height: 100%
+    width: 100%
+
+    div
+      ul
+        padding-top: (50px+24)
+        padding-left: 24px
+
+      .link
+        padding-bottom: 16px
+
+        &:hover
+          color: $blue
+
+
+
+

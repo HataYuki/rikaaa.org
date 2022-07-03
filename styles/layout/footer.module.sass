@@ -1,0 +1,36 @@
+@import "styles/foundation/font.module"
+@import "styles/foundation/variable"
+
+.root
+  padding-top: 70px
+  background-color: $off-gray
+
+  h3
+    margin-bottom: 34px
+
+.content
+  display: flex
+  flex-grow: 1
+
+.leftCol,.rightCol
+  flex-grow: 2
+  height: 261px
+
+.rightCol
+  display: flex
+  flex-flow: column
+  align-items: flex-end
+  justify-content: flex-end
+
+  > div
+    position: relative
+    width: 80px
+
+  div:first-child
+    height: 21.63px
+    margin-bottom: 30px
+
+  div:last-child
+    height: 23.75px
+
+

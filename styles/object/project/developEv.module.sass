@@ -1,0 +1,17 @@
+@import "styles/foundation/variable"
+@import "styles/foundation/font.module"
+
+.root
+  background-color: lighten($black,3)
+  padding: 24px
+  li
+    display: inline
+    word-break: break-all
+    &:after
+      content: '/'
+      display: inline-block
+      padding: 0 5px
+
+    &:last-child
+      &:after
+        display: none
