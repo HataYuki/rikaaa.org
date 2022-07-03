@@ -26,7 +26,7 @@ const Navi: NextPage<Props> = ({visibility,onClick}: Props) => {
                 <div>
                     <ul className={Style.fHeadLine}>
                         <li>
-                            <Link href={'/work/all/project'} className={Style.link}>
+                            <Link href={'/work/all/project'}>
                                 <a href="" onClick={handleClick}>
                                     PROJECT
                                 </a>
