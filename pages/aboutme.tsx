@@ -7,7 +7,7 @@ import Profile from "../parts/object/project/profile";
 const Aboutme: NextPage = () => {
     return (
         <Root headerColor={'dark'} hasPadding={true} showTitle={true}>
-            <PageHeadLine title={'about me'} reverse={true} subTitle={'自己紹介'}/>
+            <PageHeadLine title={'about me'} imageUrl={'/test1.png'} reverse={true} subTitle={'自己紹介'}/>
             <Profile />
         </Root>
     )
