@@ -1,10 +1,10 @@
 import {NextPage} from 'next'
-import PageHeadLine from "../parts/object/component/pageHeadLine";
-import Root from "../parts/object/project/root";
-import Profile from "../parts/object/project/profile";
+import PageHeadLine from "../../parts/object/component/pageHeadLine";
+import Root from "../../parts/object/project/root";
+import Profile from "../../parts/object/project/profile";
 
 
-const Aboutme: NextPage = () => {
+const Index: NextPage = () => {
     return (
         <Root headerColor={'dark'} hasPadding={true} showTitle={true}>
             <PageHeadLine title={'about me'} imageUrl={'/test1.png'} reverse={true} subTitle={'自己紹介'}/>
@@ -13,4 +13,4 @@ const Aboutme: NextPage = () => {
     )
 }
 
-export default Aboutme
+export default Index
