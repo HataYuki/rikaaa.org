@@ -8,19 +8,19 @@ const Ad:NextPage = () =>{
         <ul className={Style.root}>
             <li>
                     <span>
-                        <Image src={'/test1.png'} layout={'fill'} objectFit={'cover'}></Image>
+                        <Image src={'/dammy.jpeg'} layout={'fill'} objectFit={'cover'}></Image>
                     </span>
                 <h5 className={Style.fHeadLine}>19th CANPUS GENIUS AWARD</h5>
             </li>
             <li>
                     <span>
-                        <Image src={'/test1.png'} layout={'fill'} objectFit={'cover'}></Image>
+                        <Image src={'/dammy.jpeg'} layout={'fill'} objectFit={'cover'}></Image>
                     </span>
                 <h5 className={Style.fHeadLine}>19th CANPUS GENIUS AWARD</h5>
             </li>
             <li>
                     <span>
-                        <Image src={'/test1.png'} layout={'fill'} objectFit={'cover'}></Image>
+                        <Image src={'/dammy.jpeg'} layout={'fill'} objectFit={'cover'}></Image>
                     </span>
                 <h5 className={Style.fHeadLine}>19th CANPUS GENIUS AWARD</h5>
             </li>

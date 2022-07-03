@@ -8,7 +8,7 @@ const SkillList: NextPage = () =>{
             <li className={Style.skill}>
                 <dl className={Style.card}>
                     <dt>
-                        <Image src="/test1.png" layout="fill" objectFit="cover"></Image>
+                        <Image src="/dammy.jpeg" layout="fill" objectFit="cover"></Image>
                     </dt>
                     <dd>
                         <h3 className={Style.fSubHeadLine}>FRONTEND</h3>
@@ -25,7 +25,7 @@ const SkillList: NextPage = () =>{
             <li className={Style.skill}>
                 <dl className={Style.card}>
                     <dt>
-                        <Image src="/test1.png" layout="fill" objectFit="cover"></Image>
+                        <Image src="/dammy.jpeg" layout="fill" objectFit="cover"></Image>
                     </dt>
                     <dd>
                         <h3 className={Style.fSubHeadLine}>FRONTEND</h3>
@@ -42,7 +42,7 @@ const SkillList: NextPage = () =>{
             <li className={Style.skill}>
                 <dl className={Style.card}>
                     <dt>
-                        <Image src="/test1.png" layout="fill" objectFit="cover"></Image>
+                        <Image src="/dammy.jpeg" layout="fill" objectFit="cover"></Image>
                     </dt>
                     <dd>
                         <h3 className={Style.fSubHeadLine}>FRONTEND</h3>
