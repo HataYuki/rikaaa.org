@@ -13,6 +13,7 @@ import Link from "../parts/object/component/link";
 import Ad from "../parts/object/component/ad";
 import {getPosts} from '@lib/posts'
 import type {PostList} from "@lib/posts";
+import project from "../parts/object/project/project";
 
 interface Props {
     posts: PostList
@@ -27,7 +28,7 @@ export const getServerSideProps:GetServerSideProps = async () => {
     }
 }
 
-const Home: NextPage<Props> = ({posts}: Props) => {
+const Index: NextPage<Props> = ({posts}: Props) => {
     const router = useRouter()
     const [headerColor, setHeaderColor] = useState('light')
     const [showTitle, setShowTitle] = useState(false)
@@ -52,7 +53,7 @@ const Home: NextPage<Props> = ({posts}: Props) => {
                             projectList.map((project,i)=>{
                                 return(
                                     <ImageTextBtn key={i}
-                                        src={project.images[0].url}
+                                        src={project.eyeCatch[0] ||project.images[0].url}
                                         title={project.headLine.en}
                                         subText={project.headLine.subTextEn}
                                         onClick={()=>router.push(`/work/${project.slug}`)}
@@ -71,7 +72,7 @@ const Home: NextPage<Props> = ({posts}: Props) => {
                             myProjectList.map((project,i)=>{
                                 return(
                                     <ImageTextBtn key={i}
-                                        src={project.images[0].url}
+                                        src={project.eyeCatch[0] || project.images[0].url}
                                         title={project.headLine.en}
                                         subText={project.headLine.subTextEn}
                                         onClick={() => router.push(`/work/${project.slug}`)}
@@ -108,4 +109,4 @@ const Home: NextPage<Props> = ({posts}: Props) => {
     )
 }
 
-export default Home
+export default Index
