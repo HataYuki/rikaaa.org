@@ -2,7 +2,7 @@ import type {NextPage} from 'next'
 import Container from "../../layout/container";
 import Style from 'styles/object/project/project.module.sass'
 import Definition from "../component/definition";
-import ImageList from "./imageList";
+import MediaList from "./mediaList";
 import DevelopEv from "./developEv";
 import type {Post} from "@lib/posts";
 
@@ -27,17 +27,18 @@ const Project: NextPage<Props> = ({post}: Props) => {
             </section>
             <section>
                 <Container pb100={true}>
-                    <ImageList>
+                    <MediaList>
                         {{
-                            images: (
-                                post.images.map(img=>{
+                            media: (
+                                post.media.map(media=>{
                                     return{
-                                        src:img.url
+                                        image:media.image,
+                                        video:media.video
                                     }
                                 })
                             )
                         }}
-                    </ImageList>
+                    </MediaList>
                 </Container>
             </section>
             <section>
@@ -56,8 +57,8 @@ const Project: NextPage<Props> = ({post}: Props) => {
                     <Definition>
                         {{
                             items: (
-                                post.overview.map(item=>{
-                                    return[
+                                post.overview.map(item => {
+                                    return [
                                         item.term,
                                         ...item.description
                                     ]

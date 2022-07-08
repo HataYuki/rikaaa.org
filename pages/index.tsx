@@ -35,6 +35,8 @@ const Index: NextPage<Props> = ({posts}: Props) => {
     const projectList = posts.filter(post=>post.projectType === 'client')
     const myProjectList = posts.filter(posts => posts.projectType === 'self')
 
+    console.log(posts)
+
     return (
         <Root headerColor={headerColor} showTitle={showTitle}>
             <MainVisual onIntersect={(isIntersect) => {
@@ -53,7 +55,7 @@ const Index: NextPage<Props> = ({posts}: Props) => {
                             projectList.map((project,i)=>{
                                 return(
                                     <ImageTextBtn key={i}
-                                        src={project.eyeCatch[0] ||project.images[0].url}
+                                        src={project.eyeCatch[0] ||project.media[0].image}
                                         title={project.headLine.en}
                                         subText={project.headLine.subTextEn}
                                         onClick={()=>router.push(`/work/${project.slug}`)}
@@ -72,7 +74,7 @@ const Index: NextPage<Props> = ({posts}: Props) => {
                             myProjectList.map((project,i)=>{
                                 return(
                                     <ImageTextBtn key={i}
-                                        src={project.eyeCatch[0] || project.images[0].url}
+                                        src={project.eyeCatch[0] || project.media[0].image}
                                         title={project.headLine.en}
                                         subText={project.headLine.subTextEn}
                                         onClick={() => router.push(`/work/${project.slug}`)}
