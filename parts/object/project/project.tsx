@@ -19,9 +19,19 @@ const Project: NextPage<Props> = ({post}: Props) => {
                         <h3 className={Style.fHeadLine}>
                             {post.description.copy}
                         </h3>
-                        <p>
-                            {post.description.article}
-                        </p>
+                        {
+                            post
+                                .description
+                                .article
+                                .split('\n').map((paragraph,i)=>{
+                                    return(
+                                        <p key={i}>
+                                            {paragraph}
+                                        </p>
+                                    )
+                            })
+                        }
+
                     </div>
                 </Container>
             </section>
