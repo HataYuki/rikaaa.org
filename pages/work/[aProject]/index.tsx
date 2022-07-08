@@ -25,7 +25,7 @@ const Index: NextPage<Props> = ({post}: Props) => {
             <PageHeadLine
                 title={post.headLine.en}
                 subTitle={post.headLine.ja}
-                imageUrl={post.images[0].url}
+                imageUrl={post.eyeCatch[0]}
                 overlay={true}
             />
             <Project post={post}/>
