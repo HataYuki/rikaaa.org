@@ -35,8 +35,6 @@ const Index: NextPage<Props> = ({posts}: Props) => {
     const projectList = posts.filter(post=>post.projectType === 'client')
     const myProjectList = posts.filter(posts => posts.projectType === 'self')
 
-    console.log(posts)
-
     return (
         <Root headerColor={headerColor} showTitle={showTitle}>
             <MainVisual onIntersect={(isIntersect) => {

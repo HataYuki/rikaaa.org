@@ -3,8 +3,23 @@
 
 .root
   padding: 24px
-  background-color: lighten($black,3)
+  background-color: lighten($black, 3)
+
+  .spacer
+    display: block
+
+    &.show
+      padding-top: (9%/16*100)
+
+    &.hide
+      display: none
 
 
   video
     width: 100%
+
+    &.show
+      display: block
+
+    &.hide
+      display: none
