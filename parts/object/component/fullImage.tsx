@@ -10,7 +10,7 @@ interface Props {
 const FullImage: NextPage<Props> = ({src}: Props) => {
     const [width, setWidth] = useState(0)
     const [height, setHeight] = useState(0)
-    const ratio = (width && height) ? height/width*100 : 70
+    const ratio = (width && height) ? height/width*100 : (9/16)*100
 
     return (
         <div className={Style.root}>
