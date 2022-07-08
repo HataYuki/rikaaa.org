@@ -4,6 +4,7 @@ export interface Post {
     order: number
     projectType: string
     slug: string
+    eyeCatch: Array<string>,
     headLine: {
         en: string
         ja: string
@@ -34,6 +35,7 @@ export const getPosts = async (): Promise<PostList> => {
             'orderNumber',
             'projectType',
             'slug',
+            'eyeCatch',
             'headLine',
             'description',
             'images',
@@ -41,6 +43,10 @@ export const getPosts = async (): Promise<PostList> => {
             'overview',
         ],
         populate: [
+            {
+                field: 'eyeCatch',
+                fields:['url']
+            },
             {
                 field: 'images',
                 fields: ['image'],
@@ -85,6 +91,9 @@ export const getPosts = async (): Promise<PostList> => {
             order: obj.orderNumber,
             projectType: obj.projectType,
             slug: obj.slug,
+            eyeCatch: (!obj.eyeCatch) ? [] : obj.eyeCatch.map((image:any)=>{
+                return image.url
+            }),
             headLine: obj.headLine,
             images: obj.images.map((image: any) => {
                 return {
