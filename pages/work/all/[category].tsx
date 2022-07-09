@@ -37,14 +37,14 @@ const Category: NextPage<Props> = ({posts}: Props) => {
 
     return (
         <Root showTitle={true} headerColor={'dark'} hasPadding={true}>
-            <PageHeadLine title={category} imageUrl={posts[0].images[0].url}/>
+            <PageHeadLine title={category} imageUrl={'/dammy.jpeg'}/>
             <Container border={true} pb100={true}>
                 <FlexBlock>
                     {
                         posts.map((post,i)=>{
                             return(
                                 <ImageTextBtn key={i}
-                                    src={post.images[0].url}
+                                    src={post.eyeCatch[0] || post.media[0].image}
                                     title={post.headLine.en}
                                     subText={post.headLine.subTextEn}
                                     onClick={() => router.push(`/work/${post.slug}`)}
