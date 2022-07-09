@@ -4,6 +4,7 @@ export interface Post {
     order: number
     projectType: string
     slug: string
+    eyeCatch: Array<string>,
     headLine: {
         en: string
         ja: string
@@ -13,8 +14,9 @@ export interface Post {
         article: string
         copy: string
     }
-    images: Array<{
-        url: string
+    media: Array<{
+        image: string
+        video: Array<string>
         embedUrl: string
         caption: string
     }>
@@ -34,6 +36,7 @@ export const getPosts = async (): Promise<PostList> => {
             'orderNumber',
             'projectType',
             'slug',
+            'eyeCatch',
             'headLine',
             'description',
             'images',
@@ -42,8 +45,12 @@ export const getPosts = async (): Promise<PostList> => {
         ],
         populate: [
             {
+                field: 'eyeCatch',
+                fields: ['url']
+            },
+            {
                 field: 'images',
-                fields: ['image'],
+                fields: ['image', 'video'],
                 populate: [
                     {
                         field: 'image',
@@ -51,9 +58,14 @@ export const getPosts = async (): Promise<PostList> => {
                             {
                                 field: 'image',
                                 fields: ['url']
-                            }
+                            },
+                            {
+                                field: 'video',
+                                fields: ['url']
+                            },
                         ]
                     },
+
                 ]
             },
             {
@@ -79,18 +91,21 @@ export const getPosts = async (): Promise<PostList> => {
         return []
     }
 
-
     return Object.values(data).map((obj: any) => {
         return {
             order: obj.orderNumber,
             projectType: obj.projectType,
             slug: obj.slug,
+            eyeCatch: (!obj.eyeCatch) ? [] : obj.eyeCatch.map((image: any) => {
+                return image.url
+            }),
             headLine: obj.headLine,
-            images: obj.images.map((image: any) => {
+            media: (!obj.images) ? [] : obj.images.map((image: any) => {
                 return {
-                    url: (image.image.image) ? image.image.image[0].url : '',
+                    image: (image.image.image.length) ? image.image.image[0].url : '',
+                    video: (image.image.video.length) ? image.image.video.map((v: any) => v.url) : [],
                     caption: (image.image.caption) ? image.image.caption : '',
-                    embedUrl: image.image.embedUrl ? image.image.embedUrl : '',
+                    embedUrl: (image.image.embedUrl) ? image.image.embedUrl : '',
                 }
             }),
             description: obj.description,
