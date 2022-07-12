@@ -1,4 +1,4 @@
-import {NextPage, GetServerSideProps} from 'next'
+import {NextPage, GetStaticProps, GetStaticPaths} from 'next'
 import {useRouter} from 'next/router'
 import Root from "../../../parts/object/project/root";
 import PageHeadLine from "../../../parts/object/component/pageHeadLine";
@@ -13,9 +13,16 @@ interface Props {
     posts: PostList
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+    return {
+        paths: ['/work/all/project', '/work/all/my_project'],
+        fallback: false
+    }
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
     const category = (context.params && context.params.category) ? context.params.category : ''
-    let type = '';
+    let type: string = '';
     if (category === 'project') {
         type = 'client'
     }
@@ -24,7 +31,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
     const posts = await getPostsByPType(type)
     return {
-        props:{
+        props: {
             posts
         }
     }
@@ -41,13 +48,13 @@ const Category: NextPage<Props> = ({posts}: Props) => {
             <Container border={true} pb100={true}>
                 <FlexBlock>
                     {
-                        posts.map((post,i)=>{
-                            return(
+                        posts.map((post, i) => {
+                            return (
                                 <ImageTextBtn key={i}
-                                    src={post.eyeCatch[0] || post.media[0].image}
-                                    title={post.headLine.en}
-                                    subText={post.headLine.subTextEn}
-                                    onClick={() => router.push(`/work/${post.slug}`)}
+                                              src={post.eyeCatch[0] || post.media[0].image}
+                                              title={post.headLine.en}
+                                              subText={post.headLine.subTextEn}
+                                              onClick={() => router.push(`/work/${post.slug}`)}
                                 />
                             )
                         })
