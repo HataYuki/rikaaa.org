@@ -1,4 +1,4 @@
-import type {NextPage, GetServerSideProps} from 'next'
+import type {NextPage, GetStaticProps} from 'next'
 import {useRouter} from 'next/router'
 import {useState} from 'react'
 import MainVisual from '../parts/object/component/main-visual'
@@ -18,7 +18,7 @@ interface Props {
     postIndexList: PostIndexList
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
     const postIndexList = await getPostIndexList();
     return {
         props: {
