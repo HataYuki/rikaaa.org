@@ -1,0 +1,32 @@
+@import "styles/foundation/variable"
+@import "styles/foundation/font.module"
+@import "styles/foundation/mixin"
+
+.root
+  width: 100%
+
+.imgContainer
+  position: relative
+  width: 100%
+  height: (4/3*375px)
+  margin-bottom: 15px
+  transition: height 300ms ease-out
+  @include mq(570)
+    height: (4/3*(570/2-60)) * 1px
+
+  @include mq(900)
+    height: (4/3*(900/3-60)) * 1px
+
+  @include mq(1280)
+    height: (4/3*(1280/3-60)) * 1px
+
+.title, .subText
+  text-align: center
+
+.title
+  color: $black
+  margin-bottom: 6px
+
+.subText
+  color: $gray
+

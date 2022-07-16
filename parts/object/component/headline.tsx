@@ -1,20 +1,27 @@
 import {NextPage} from "next"
-import clsx from "clsx"
 import Style from "@styles/object/component/headline.module.sass"
-import Container from "../../layout/container";
+import clsx from "clsx"
 
 interface Obj {
     en: string
     ja?: string
+
 }
 
 interface Props {
     children: Obj
+    className?: string
+    align?: string
 }
 
-const headline: NextPage<Props> = ({children}: Props) => {
+const headline: NextPage<Props> = ({children, align, className}: Props) => {
     return (
-        <div className={Style.root}>
+        <div className={clsx(
+            Style.root,
+            className,
+            {[Style.alignCenter]: align === 'center'},
+            {[Style.alignRight]: align === 'right'},
+        )}>
             <h2 className={Style.fHeadLine}>
                 {children.en.toUpperCase()}
             </h2>

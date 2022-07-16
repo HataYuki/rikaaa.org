@@ -1,58 +1,168 @@
 @import "styles/foundation/variable"
 @import "styles/foundation/font.module"
+@import "styles/foundation/mixin"
 
 .root
   width: 100vw
   margin: 0 calc(50% - 50vw)
+  @include max()
+    max-width: 1400px
+    margin: 0 auto
 
-  .wrapper
+.wrapper
+  transform: translateY(-60px)
+
+.aVision
+  position: relative
+  height: 600px
+  margin-bottom: 100px
+  overflow: hidden
+  transition: height 300ms ease-out
+  @include lg()
     display: flex
-    flex-direction: column
-    transform: translateY(-30px)
+    align-items: center
+    justify-content: space-between
+    height: 750px
 
-  .vision
-    display: flex
-    width: 100vw
-    margin: 0 calc(50% - 50vw) 60px
+  &:last-child
+    margin-bottom: 0
 
-    &:last-child
-      margin-bottom: 0
+  .imgBlock
+    width: genClamp(250,450)
+    height: 100%
+    @include lg
+      width: genClamp(450, 582, $win_max_width, $win_limit_width)
 
-    &:nth-child(even)
-      flex-direction: row-reverse
 
-      .textBlock
-        div
-          left: 24px
-
-    &:nth-child(odd)
-      .textBlock
-        div
-          right: 24px
-
-    .img
-      position: relative
-      width: 220px
-      height: 446px
-
-    .textBlock
-      position: relative
+  .textBlock
+    width: genClamp(264,450)
+    padding: 16px 22px
+    top: 50%
+    transform: translateY(-50%)
+    background-color: $off-white
+    @include lg
+      background-color: transparent
       flex-grow: 1
 
-      div
-        position: absolute
-        width: 216px
-        padding: 16px 22px
-        top: 50%
-        transform: translateY(-50%)
-        background-color: $off-white
-        z-index: 3
+      > div
+        max-width: 600px
+        margin: 0 auto
 
-        h3
-          margin-bottom: 22px
 
-          span
-            color: $blue
+    h3
+      margin-bottom: 22px
 
-        p
-          margin-bottom: 1em
+      span
+        color: $blue
+
+    p
+      margin-bottom: 1em
+      font-size: genClamp(12, 15, $win_min_width, $win_limit_width)
+
+  &:nth-child(odd)
+    .imgBlock
+      left: 0
+
+  &:nth-child(even)
+    .imgBlock
+      right: 0
+
+
+  &:nth-child(even)
+    flex-direction: row-reverse
+    .textBlock
+      right: auto
+      left: 24px
+
+  &:nth-child(odd)
+    .textBlock
+      right: 24px
+      left: auto
+
+  &:nth-child(n)
+    .imgBlock,.textBlock
+      position: absolute
+      @include lg
+        position: relative
+        top: auto
+        right: auto
+        left: auto
+        transform: inherit
+
+//.root
+//  width: 100vw
+//  margin: 0 calc(50% - 50vw)
+//  @include mq(1400)
+//    max-width: 1400px
+//    margin: 0 auto
+//
+//  .wrapper
+//    display: flex
+//    flex-direction: column
+//    transform: translateY(-30px)
+//
+//  .vision
+//    display: flex
+//    justify-content: space-between
+//    width: 100%
+//    height: 640px
+//    margin: 0 calc(50% - 50vw) 60px
+//    @include mq(1400)
+//      margin: 0 auto 60px auto
+//
+//    &:last-child
+//      margin-bottom: 0
+//
+//    &:nth-child(even)
+//      flex-direction: row-reverse
+//
+//      .textBlock
+//        div
+//          left: 24px
+//          @include lg
+//            left: 0
+//
+//    &:nth-child(odd)
+//      .textBlock
+//        div
+//          right: 24px
+//          @include lg
+//            right: 0
+//
+//
+//    .img
+//      position: relative
+//      //width: (220/375*100%)
+//      //height: ((4/3)*375px)
+//      //@include lg
+//      //  width: 60%
+//
+//    .textBlock
+//      position: relative
+//      width: 216px
+//      //width: (216/375*100%)
+//      flex-grow: 1
+//      //@include lg
+//      //  width: 40%
+//
+//      div
+//        position: absolute
+//        width: 100%
+//        padding: 16px 22px
+//        top: 50%
+//        transform: translateY(-50%)
+//        background-color: $off-white
+//        z-index: 3
+//        @include lg
+//          background-color: transparent
+//
+//        h3
+//          margin-bottom: 22px
+//
+//          span
+//            color: $blue
+//
+//        p
+//          margin-bottom: 1em
+//          font-size: genClamp(12,14)
+

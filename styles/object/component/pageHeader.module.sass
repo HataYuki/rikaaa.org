@@ -1,0 +1,69 @@
+@import "styles/foundation/variable"
+@import "styles/foundation/font.module"
+@import "styles/foundation/mixin"
+
+
+.root
+  background-color: lighten($black,3)
+  color: $white
+  overflow: hidden
+  padding-top: 50px
+  margin-bottom: 100px
+
+  &.noSwiper
+    .inner
+      height: 140px
+      @include md
+        height: 250px
+      @include lg
+        height: 280px
+
+.inner
+  height: 700px
+  max-height: 100vh
+  position: relative
+  @include lg
+    height: 900px
+
+.textBlock, .swiperBlock
+  position: absolute
+  top: 50%
+  transform: translateY(-50%)
+  width: 100%
+
+.swiperBlock
+  right: 0
+  z-index: 1
+
+.textBlock
+  z-index: 2
+  pointer-events: none
+
+.text
+  margin-bottom: 0
+
+  h2
+    font-size: genClamp(23, 32)
+
+  span
+    font-size: genClamp(14, 16)
+
+.swiperBlock
+  width: (1.3/1.618*100%)
+  height: 70%
+  @include md
+    height: 80%
+  @include lg
+    width: (1.2/1.618*100%)
+
+  opacity: 0.8
+
+.textBlock
+  width: 75%
+  height: (0.618/1.618*100%)
+  display: flex
+  align-items: center
+
+.swiperWrapper, .swiper
+  width: 100%
+  height: 100%
