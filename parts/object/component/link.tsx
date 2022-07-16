@@ -13,12 +13,12 @@ const Link: NextPage = () => {
             </Headline>
             <ul>
                 <li>
-                    <a href="">
+                    <a rel={'noreferrer'} href={'https://github.com/HataYuki/'} target={'_blank'}>
                         <Image src={'/github_logo.svg'} width={80} height={21}></Image>
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a rel={'noreferrer'} href={'https://vimeo.com/user18693731'} target={'_blank'}>
                         <Image src={'/vimeo_logo.svg'} width={84} height={23}></Image>
                     </a>
                 </li>
