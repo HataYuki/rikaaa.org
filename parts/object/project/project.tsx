@@ -11,27 +11,46 @@ interface Props {
 }
 
 const Project: NextPage<Props> = ({post}: Props) => {
+    const developEv = () =>{
+        if(post.environment.length){
+            return (
+                <section>
+                    <Container pb100={true}>
+                        <DevelopEv>
+                            {{
+                                toolList: (
+                                    post.environment
+                                )
+                            }}
+                        </DevelopEv>
+                    </Container>
+                </section>
+            )
+        }
+    }
+
     return (
         <>
             <section className={Style.headLine}>
                 <Container pb100={true}>
-                    <div>
+                    <div className={Style.text}>
                         <h3 className={Style.fHeadLine}>
                             {post.description.copy}
                         </h3>
-                        {
-                            post
-                                .description
-                                .article
-                                .split('\n').map((paragraph,i)=>{
+                        <div className={Style.description}>
+                            {
+                                post
+                                    .description
+                                    .article
+                                    .split('\n').map((paragraph,i)=>{
                                     return(
                                         <p key={i}>
                                             {paragraph}
                                         </p>
                                     )
-                            })
-                        }
-
+                                })
+                            }
+                        </div>
                     </div>
                 </Container>
             </section>
@@ -51,17 +70,9 @@ const Project: NextPage<Props> = ({post}: Props) => {
                     </MediaList>
                 </Container>
             </section>
-            <section>
-                <Container pb100={true}>
-                    <DevelopEv>
-                        {{
-                            toolList: (
-                                post.environment
-                            )
-                        }}
-                    </DevelopEv>
-                </Container>
-            </section>
+
+            {developEv}
+
             <section className={Style.info}>
                 <Container pb100={true}>
                     <Definition>

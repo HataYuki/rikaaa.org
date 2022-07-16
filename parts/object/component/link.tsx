@@ -6,7 +6,7 @@ import Image from 'next/image'
 const Link: NextPage = () => {
     return (
         <div className={Style.root}>
-            <Headline>
+            <Headline align={'center'}>
                 {{
                     en: ('link')
                 }}

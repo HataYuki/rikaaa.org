@@ -1,18 +1,18 @@
 import type {NextPage, GetStaticProps} from 'next'
 import {useRouter} from 'next/router'
-import {useState} from 'react'
-import MainVisual from '../parts/object/component/main-visual'
-import ImageTextBtn from '../parts/object/project/image-text-btn'
-import Vision from "../parts/object/project/vision";
+import React, {useState} from 'react'
+import MainVisual from '../parts/object/component/mainVisual'
+import Vision from "../parts/object/project/vision"
 
-import Work from "../parts/object/project/work";
-import Skill from "../parts/object/project/skill";
-import Root from "../parts/object/project/root";
-import Container from "../parts/layout/container";
-import Link from "../parts/object/component/link";
-import Ad from "../parts/object/component/ad";
+import Work from "../parts/object/project/work"
+import Skill from "../parts/object/project/skill"
+import Root from "../parts/object/project/root"
+import Container from "../parts/layout/container"
+import Link from "../parts/object/component/link"
+import Ad from "../parts/object/component/ad"
 import {getPostIndexList} from '@lib/posts'
-import type {PostIndexList} from "@lib/posts";
+import type {PostIndexList} from "@lib/posts"
+import ImageTextBtn from "../parts/object/project/imageTextBtn";
 
 interface Props {
     postIndexList: PostIndexList
@@ -30,21 +30,26 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 const Index: NextPage<Props> = ({postIndexList}: Props) => {
     const router = useRouter()
     const [headerColor, setHeaderColor] = useState('light')
-    const [showTitle, setShowTitle] = useState(false)
-    const projectList = postIndexList.filter(index => index.projectType === 'client')
-    const myProjectList = postIndexList.filter(index => index.projectType === 'self')
+    const projectList = postIndexList.filter(post => post.projectType === 'client').filter((post, i) => i < 7)
+    const myProjectList = postIndexList.filter(post => post.projectType === 'self').filter((post, i) => i < 7)
+    const style: { [key: string]: React.CSSProperties } = {
+        mainVisualSection: {
+            marginBottom: '100px'
+        }
+    }
+
 
     return (
-        <Root headerColor={headerColor} showTitle={showTitle}>
-            <MainVisual onIntersect={(isIntersect) => {
-                if (isIntersect) {
-                    setHeaderColor(() => 'light')
-                    setShowTitle(false)
-                } else {
-                    setHeaderColor(() => 'dark')
-                    setShowTitle(true)
-                }
-            }}/>
+        <Root postList={postIndexList} headerColor={headerColor} showTitle={false}>
+            <section style={style.mainVisualSection}>
+                <MainVisual onIntersect={(isIntersect) => {
+                    if (isIntersect) {
+                        setHeaderColor(() => 'light')
+                    } else {
+                        setHeaderColor(() => 'dark')
+                    }
+                }}/>
+            </section>
             <section>
                 <Container mb100={true} pb100={true} border={true}>
                     <Work title='project' btnSlug={'/work/all/project'}>
@@ -65,7 +70,7 @@ const Index: NextPage<Props> = ({postIndexList}: Props) => {
             </section>
 
             <section>
-                <Container mb100={true} pb100={true} border={true}>
+                <Container mb100={true} pb100={true} border={false}>
                     <Work title='my project' btnSlug={'/work/all/my_project'}>
                         {
                             myProjectList.map((project, i) => {
@@ -100,7 +105,7 @@ const Index: NextPage<Props> = ({postIndexList}: Props) => {
                 <Container bgColor={'#eaeaea'}>
                     <Link></Link>
                 </Container>
-                <Container border={true} pb100={true}>
+                <Container pb100={true}>
                     <Ad></Ad>
                 </Container>
             </section>

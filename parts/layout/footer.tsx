@@ -7,7 +7,7 @@ import Container from "./container";
 const Footer : NextPage = () => {
     return (
         <footer className={Styles.root}>
-            <Container pb100={true}>
+            <Container pd70={true}>
                 <div className={Styles.content}>
                     <div className={Styles.leftCol}>
                         <h3 className={Styles.fHeadLine}>RIKAAA.ORG</h3>

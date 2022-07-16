@@ -1,7 +1,7 @@
 import type {NextPage} from 'next'
 import React from 'react'
 import {useRouter} from 'next/router'
-import TextBtn from "../component/text-btn";
+import TextBtn from "../component/textBtn";
 import Headline from "../component/headline";
 import SkillList from "../component/skillList";
 
@@ -10,13 +10,13 @@ const Skill: NextPage = () =>{
 
     return(
         <React.Fragment>
-            <Headline>
+            <Headline align={'center'}>
                 {{
                     en:('skill')
                 }}
             </Headline>
             <SkillList />
-            <TextBtn onClick={()=>router.push('/aboutme')}>
+            <TextBtn align={'right'} onClick={()=>router.push('/aboutme')}>
                 about me
             </TextBtn>
         </React.Fragment>

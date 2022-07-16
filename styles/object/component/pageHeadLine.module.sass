@@ -2,6 +2,11 @@
 @import "styles/foundation/variable"
 
 .root
+  min-height: 320px
+  width: 100vw
+  margin: 0 calc(50% - 50vw)
+  overflow: hidden
+
   h1
     font-size: 27px
 
@@ -10,10 +15,6 @@
 
   .image
     position: relative
-    min-height: 320px
-    width: 100vw
-    margin: 0 calc(50% - 50vw)
-    background-color: $black
 
     img
       opacity: 0.55
@@ -35,31 +36,34 @@
       .image
         min-height: 120px
 
-      .textBlock
-        margin-bottom: 30px
-
     &.overlay
       .image
         height: 100vh
-        max-width: 750px
 
       .textBlock
         color: $off-gray
         position: absolute
         text-align: center
         width: 100%
-        bottom: 100px
+        top: 50%
+        transform: translateY(-50%)
 
         .bar
+          position: relative
           text-align: center
           font-size: 0
+          width: 100vw
+          margin: 0 calc(50% - 50vw)
 
           span
-            display: inline-block
-            width: 150px
+            position: absolute
+            display: block
+            width: 100vh
             height: 1px
+            left: 50%
+            transform-origin: bottom left
             background-color: $off-gray
-            transform: rotate(90deg) translateX(60%)
+            transform: rotate(90deg) translateX(50px)
 
 
 
