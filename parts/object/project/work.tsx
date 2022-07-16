@@ -3,9 +3,9 @@ import {useRouter} from 'next/router'
 import React from "react"
 import Style from "styles/object/project/work.module.sass"
 import HeadLine from "../component/headline"
-import FlexBlock from "../../layout/flex-block"
-import TextBtn from "../component/text-btn"
-import Container from "../../layout/container"
+import TextBtn from "../component/textBtn"
+import FlexLayout from "../../layout/flexLayout";
+import StyleFlexType from 'styles/layout/flexLayout.module.sass'
 
 interface Props {
     title: string,
@@ -24,11 +24,15 @@ const Work: NextPage<Props> = ({title, children, btnSlug}: Props) => {
                 }}
             </HeadLine>
             <div className={Style.flexCtn}>
-                <FlexBlock>
-                    {children}
-                </FlexBlock>
+                <div className={Style.firstItem}>
+                    {children[0]}
+                </div>
+                <FlexLayout layoutType={[StyleFlexType.typeIndexPage]}>
+                    {children.filter((child,i) => i >= 1)}
+                </FlexLayout>
             </div>
             <TextBtn
+                align={'right'}
                 onClick={e => {
                     e.preventDefault();
                     router.push(btnSlug)

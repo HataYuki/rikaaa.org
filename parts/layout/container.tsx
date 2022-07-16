@@ -31,24 +31,24 @@ const Container: NextPage<Props> = ({
             if (onIntersect) {
                 onIntersect(isIntersecting)
             }
-        }}>
-            <div
-                className={
-                    clsx(
-                        Style.root,
-                        {[Style.mb70]: mb70},
-                        {[Style.pd70]: pd70},
-                        {[Style.mb100]: mb100},
-                        {[Style.pd100]: pb100},
-                    )}
-                style={{backgroundColor: bgColor}}
-            >
+        }} className={
+            clsx(
+                Style.root,
+                {[Style.mb70]: mb70},
+                {[Style.pd70]: pd70},
+                {[Style.mb100]: mb100},
+                {[Style.pd100]: pb100},
+            )}
+                style={{backgroundColor: bgColor}}>
+            <div>
                 {children}
+            </div>
+            <div className={Style.barCtn}>
                 <span className={
-                    clsx(
-                        {[Style.border]: border}
-                    )
-                }></span>
+                clsx(
+                    {[Style.border]: border}
+                )
+            }></span>
             </div>
         </InView>
     )

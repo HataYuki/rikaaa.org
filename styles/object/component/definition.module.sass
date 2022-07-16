@@ -1,27 +1,84 @@
 @import "styles/foundation/font.module"
 @import "styles/foundation/variable"
+@import "styles/foundation/mixin"
+
 
 .root
   font-size: 15px
 
+  li
+    border-bottom: 1px solid $gray
+    margin-bottom: 26px
+    @include md
+      border-bottom: none
+
+  dl
+    position: relative
+    overflow: hidden
+    @include md
+      display: flex
+      justify-content: space-between
+      align-items: flex-start
+
   dt
     margin-bottom: 13px
+    font-size: 16px
+    position: relative
+
+    @include md
+      margin-bottom: 0
+      flex-grow: 1
+      transform: translateY(0.5em)
+      .bar
+        content: ""
+        position: absolute
+        display: block
+        height: 1px
+        width: 100%
+        top: 50%
+        left: 0
+        transform: translateY(-50%) translateX(-20px)
+
+      .text
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        line-height: 1
+        background-color: inherit
+        padding-right: 10px
+
+
   dd
-    margin-bottom: 26px
-    padding-bottom: 0.5em
-    border-bottom: 1px solid $gray
+    margin-bottom: 0.5em
+    @include md
+      margin-bottom: 0
+      width: 70%
+
     &:last-child
       border-bottom: none
 
-    span
+    p
       display: flex
       align-items: center
       margin-bottom: 0.35em
       font-size: 13px
 
+      @include md
+        font-size: 16px
+        &:last-child
+          margin-bottom: 0
+
+
+      a
+        display: inline-block
+
+
       a
         display: inline-block
         padding-right: 10px
+        overflow: hidden
+        white-space: nowrap
+        text-overflow: ellipsis
 
 
 

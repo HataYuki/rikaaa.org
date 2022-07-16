@@ -8,6 +8,8 @@
   top: 0
   color: $white
   text-align: left
+  background-color: $black
+
 
   &.inVisible
     display: none
@@ -16,20 +18,48 @@
     display: block
 
   > div
+    position: relative
     background-color: rgba($black, 0.9)
     height: 100%
     width: 100%
 
-    div
+
+    .bg
+      position: absolute
+      width: 100%
+      height: 100%
+      opacity: 0.3
+      background-position: center center
+
+
+    > div
+      padding-top: (50px+24)
+      padding-left: 24px
+
       ul
-        padding-top: (50px+24)
-        padding-left: 24px
+        li
+          margin-bottom: 1em
 
       .link
         padding-bottom: 16px
 
-        &:hover
-          color: $blue
+
+  .workList
+    position: relative
+
+    > div
+      display: flex
+      align-items: flex-start
+
+      button
+        font-size: 0
+        padding-right: 20px
+
+        svg
+          font-size: 30px
+
+      ul
+        flex-grow: 1
 
 
 

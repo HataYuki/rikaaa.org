@@ -45,7 +45,8 @@
       height: 2px
       position: absolute
       left: 50%
-      transform: translateX(-50%)
+      transform: translate(-50%,0)
+      transition: all 300ms ease-out
 
       &:first-child
         top: 20px
@@ -53,6 +54,15 @@
     &:last-child
       bottom: 20px
 
+    &.isOpen
+      span
+        top: 50%
+
+        &:first-child
+          transform: translate(-50%,-50%) rotate(20deg)
+
+        &:last-child
+          transform: translate(-50%,-50%) rotate(-20deg)
 
   nav
     z-index: 1
@@ -62,6 +72,7 @@
   .content
     h1
       color: $off-gray
+
     .btnRoot
       span
         background-color: $off-gray

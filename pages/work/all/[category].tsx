@@ -1,16 +1,19 @@
 import {NextPage, GetStaticProps, GetStaticPaths} from 'next'
 import {useRouter} from 'next/router'
 import Root from "../../../parts/object/project/root";
-import PageHeadLine from "../../../parts/object/component/pageHeadLine";
-import ImageTextBtn from "../../../parts/object/project/image-text-btn";
-import FlexBlock from "../../../parts/layout/flex-block";
+import FlexLayout from "../../../parts/layout/flexLayout";
 import Container from "../../../parts/layout/container";
 
-import type {PostList} from "@lib/posts";
-import {getPostsByPType} from "@lib/posts";
+import type {PostIndexList, PostList} from "@lib/posts";
+import {getPostIndexList, getPostsByPType} from "@lib/posts";
+import GoldenTile from "../../../parts/layout/goldenTile.";
+import ImageBtn from "../../../parts/object/component/imageBtn";
+import FlexStyle from 'styles/layout/flexLayout.module.sass'
+import MediaHide from 'styles/foundation/hide.module.sass'
 
 interface Props {
     posts: PostList
+    postIndexList: PostIndexList
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -30,36 +33,76 @@ export const getStaticProps: GetStaticProps = async (context) => {
         type = 'self'
     }
     const posts = await getPostsByPType(type)
+    const postIndexList = await getPostIndexList()
     return {
         props: {
-            posts
+            posts: posts,
+            postIndexList: postIndexList
         }
     }
 }
 
 
-const Category: NextPage<Props> = ({posts}: Props) => {
+const Category: NextPage<Props> = ({posts, postIndexList}: Props) => {
     const router = useRouter()
-    const category = router.query.category ? router.query.category.toString() : '';
+
+    const goldenTileItems = posts.filter((post, i) => i < 3)
+    const flexLayout = posts.filter((post, i) => i >= 3)
 
     return (
-        <Root showTitle={true} headerColor={'dark'} hasPadding={true}>
-            <PageHeadLine title={category} imageUrl={'/dammy.jpeg'}/>
+        <Root ha-sPadding={true} postList={postIndexList} showTitle={true} hasPadding={true}
+              headerColor={'dark'}>
             <Container border={true} pb100={true}>
-                <FlexBlock>
-                    {
-                        posts.map((post, i) => {
-                            return (
-                                <ImageTextBtn key={i}
-                                              src={post.eyeCatch[0] || post.media[0].image}
-                                              title={post.headLine.en}
-                                              subText={post.headLine.subTextEn}
-                                              onClick={() => router.push(`/work/${post.slug}`)}
-                                />
-                            )
-                        })
-                    }
-                </FlexBlock>
+                <div className={MediaHide.mdHideLgShow}>
+                    <GoldenTile>
+                        {
+                            goldenTileItems.map((post, i) => {
+                                return (
+                                    <ImageBtn isBtn={true} src={post.eyeCatch[0]} key={i}
+                                              onClick={() => router.push(`/work/${post.slug}`)}>
+                                        {{
+                                            main: (post.headLine.en),
+                                        }}
+                                    </ImageBtn>
+                                )
+                            })
+                        }
+                    </GoldenTile>
+                </div>
+
+                <div className={MediaHide.mdHideLgShow}>
+                    <FlexLayout layoutType={[FlexStyle.typeTile, FlexStyle.noGap, FlexStyle.golden]}>
+                        {
+                            flexLayout.map((post, i) => {
+                                return (
+                                    <ImageBtn isBtn={true} src={post.eyeCatch[0]} key={i}
+                                              onClick={() => router.push(`/work/${post.slug}`)}>
+                                        {{
+                                            main: (post.headLine.en),
+                                        }}
+                                    </ImageBtn>
+                                )
+                            })
+                        }
+                    </FlexLayout>
+                </div>
+
+                <div className={MediaHide.mdShowLgHide}>
+                    <FlexLayout layoutType={[FlexStyle.typeTile]}>
+                        {
+                            posts.map((post, i) => {
+                                return (
+                                    <ImageBtn isBtn={true} src={post.eyeCatch[0]} key={i}
+                                              onClick={() => router.push(`/work/${post.slug}`)}>
+                                        {{
+                                            main: (post.headLine.en),
+                                        }}
+                                    </ImageBtn>
+                                )
+                            })
+                        }
+                    </FlexLayout>
+                </div>
             </Container>
         </Root>
     )

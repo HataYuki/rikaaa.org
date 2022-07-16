@@ -2,18 +2,28 @@
 
 .root
   padding: 0 24px 0 24px
+  width: 100vw
   position: relative
 
-  > span
-    display: none
 
-    &.border
-      position: absolute
-      bottom: 0
-      display: inline-block
-      width: calc(100% - 48px)
-      height: 1px
-      background-color: $gray
+  > div
+    max-width: 1400px
+    margin: 0 auto
+
+
+  .barCtn
+    height: auto
+    > span
+      display: none
+      max-width: 1400px
+
+      &.border
+        position: absolute
+        bottom: 0
+        display: inline-block
+        width: calc(100% - 48px)
+        height: 1px
+        background-color: $gray
 
 
   &.mb70
