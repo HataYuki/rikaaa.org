@@ -40,7 +40,12 @@ const ImageTextCard: NextPage<Props> = ({children, className}: Props) => {
                     triggerOnce={true}
                     onChange={(InView, entry) => setShowImage(entry.isIntersecting)}
                 >
-                    <Image src={children.imgUrl} layout="fill" objectFit="cover"></Image>
+                    <Image
+                        src={children.imgUrl}
+                        layout="fill"
+                        objectFit="cover"
+                        loading={'lazy'}
+                    ></Image>
                 </InView>
                 <dd className={Style.textBlock}>
                     <InView

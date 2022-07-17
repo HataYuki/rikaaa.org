@@ -28,8 +28,7 @@ const Vision: NextPage = () => {
                             src={'/vision_img_00.jpg'}
                             layout={'fill'}
                             objectFit={'cover'}
-                            loading={'eager'}
-                            priority={true}
+                            loading={'lazy'}
                         >
                         </Image>
                     </div>

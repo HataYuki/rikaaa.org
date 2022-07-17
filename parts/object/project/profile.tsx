@@ -30,8 +30,7 @@ const Profile: NextPage = () => {
                     <div className={Style.selfImage}>
                         <Image layout={'fill'}
                                objectFit={'cover'}
-                               loading={'eager'}
-                               priority={true}
+                               loading={'lazy'}
                                src={'/self.jpg'}
                         />
                     </div>

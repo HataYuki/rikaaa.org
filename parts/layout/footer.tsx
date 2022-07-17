@@ -32,12 +32,12 @@ const Footer: NextPage = () => {
                     <div className={Styles.rightCol}>
                         <div>
                             <a rel={'noreferrer'} href={'https://github.com/HataYuki/'} target={'_blank'}>
-                                <Image src="/github_logo.svg" layout="fill" alt="github"></Image>
+                                <Image loading={'lazy'} src="/github_logo.svg" layout="fill" alt="github"></Image>
                             </a>
                         </div>
                         <div>
                             <a rel={'noreferrer'} href={'https://vimeo.com/user18693731'} target={'_blank'}>
-                                <Image src="/vimeo_logo.svg" layout="fill" alt="vimeo"></Image>
+                                <Image loading={'lazy'} src="/vimeo_logo.svg" layout="fill" alt="vimeo"></Image>
                             </a>
                         </div>
                     </div>

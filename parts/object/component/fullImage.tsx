@@ -19,8 +19,7 @@ const FullImage: NextPage<Props> = ({src}: Props) => {
                        layout={'responsive'}
                        width={'100%'}
                        height={`${ratio}%`}
-                       priority={true}
-                       loading={'eager'}
+                       loading={'lazy'}
                        onLoadingComplete={({naturalWidth,naturalHeight})=>{
                            setWidth(naturalWidth)
                            setHeight(naturalHeight)
