@@ -35,7 +35,7 @@ const Link: NextPage = () => {
                             return (
                                 <li key={i}>
                                     <a rel={'noreferrer'} href={link[0]} target={'_blank'}>
-                                        <Image src={link[1]} width={80} height={21}></Image>
+                                        <Image loading={'lazy'} src={link[1]} width={80} height={21}></Image>
                                     </a>
                                 </li>
                             )
