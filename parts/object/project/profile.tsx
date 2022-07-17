@@ -1,16 +1,31 @@
 import type {NextPage} from 'next'
+import {useState} from 'react'
 import Style from 'styles/object/project/profile.module.sass'
+import Animation from 'styles/foundation/animation.module.sass'
 import Container from "../../layout/container";
 import Headline from "../component/headline";
 import SkillList from "../component/skillList";
 import Definition from "../component/definition";
 import Image from 'next/image'
+import clsx from 'clsx'
 
 
 const Profile: NextPage = () => {
+    const [show, setShow] = useState(true)
+
     return (
-        <section className={Style.root}>
-            <Container mb100={true} pb100={true} border={true}>
+        <section
+            className={clsx(
+                Style.root,
+                Animation.fadeInUpAnimation,
+                {[Animation.isAnimated]: show}
+            )}
+        >
+            <Container mb100={true} pb100={true} border={true} onIntersect={(isIntersecting) => {
+                if (isIntersecting) {
+                    setShow(isIntersecting)
+                }
+            }}>
                 <div className={Style.aboutMe}>
                     <div className={Style.selfImage}>
                         <Image layout={'fill'}

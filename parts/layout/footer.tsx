@@ -1,10 +1,10 @@
-import type { NextPage } from "next"
+import type {NextPage} from "next"
 import Styles from "@styles/layout/footer.module.sass"
 import Link from "next/link"
 import Image from "next/image"
 import Container from "./container";
 
-const Footer : NextPage = () => {
+const Footer: NextPage = () => {
     return (
         <footer className={Styles.root}>
             <Container pd70={true}>
@@ -23,7 +23,7 @@ const Footer : NextPage = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/aboutme">
+                                <Link href="/about_me">
                                     <a>ABOUT ME</a>
                                 </Link>
                             </li>
@@ -31,18 +31,14 @@ const Footer : NextPage = () => {
                     </div>
                     <div className={Styles.rightCol}>
                         <div>
-                            <Link href="/">
-                                <a>
-                                    <Image src="/github_logo.svg" layout="fill" alt="github"></Image>
-                                </a>
-                            </Link>
+                            <a rel={'noreferrer'} href={'https://github.com/HataYuki/'} target={'_blank'}>
+                                <Image src="/github_logo.svg" layout="fill" alt="github"></Image>
+                            </a>
                         </div>
                         <div>
-                            <Link href="/">
-                                <a>
-                                    <Image src="/vimeo_logo.svg" layout="fill" alt="vimeo"></Image>
-                                </a>
-                            </Link>
+                            <a rel={'noreferrer'} href={'https://vimeo.com/user18693731'} target={'_blank'}>
+                                <Image src="/vimeo_logo.svg" layout="fill" alt="vimeo"></Image>
+                            </a>
                         </div>
                     </div>
                 </div>

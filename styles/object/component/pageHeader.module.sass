@@ -67,3 +67,37 @@
 .swiperWrapper, .swiper
   width: 100%
   height: 100%
+
+.bulletList
+  position: absolute
+  display: inline-block
+  height: 2px
+  bottom: -16px
+
+.bullet
+  position: relative
+  display: inline-block
+  width: 40px
+  height: 2px
+  display: inline-block
+  background-color: darken($white,50)
+  vertical-align: top
+  margin-right: 16px
+  &:before
+    content: ""
+    position: absolute
+    height: 100%
+    width: 0%
+    background-color: $blue
+
+  &:last-child
+    margin-right: 0
+  &.current
+    background-color: $white
+    &:before
+      transition: width 3100ms linear
+      width: 100%
+
+
+
+

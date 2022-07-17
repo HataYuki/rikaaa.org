@@ -1,8 +1,11 @@
 import type {NextPage} from 'next'
 import React, {useEffect, useState} from 'react'
 import Style from 'styles/object/component/definition.module.sass'
+import Animation from 'styles/foundation/animation.module.sass'
 import SimpleReactValidator from 'simple-react-validator'
 import {GoLinkExternal} from 'react-icons/go'
+import {useInView} from 'react-intersection-observer'
+import clsx from 'clsx'
 
 interface Items {
     items: Array<Array<string | number>>
@@ -16,6 +19,13 @@ const Definition: NextPage<Props> = ({children}: Props) => {
     const validator = new SimpleReactValidator();
     const [baseBgColor, setBaseBgColor] = useState('')
     const [dtColor, setDtColor] = useState('')
+    const [show, setShow] = useState(false)
+
+    const {ref, inView, entry} = useInView({
+        threshold: 0.5,
+        triggerOnce: true,
+        onChange: (inView, entry) => setShow(entry.isIntersecting)
+    })
 
     useEffect(() => {
         const article = document.getElementsByTagName('article')[0]
@@ -35,23 +45,30 @@ const Definition: NextPage<Props> = ({children}: Props) => {
         if (articleBgcVal !== 'rgba(0, 0, 0, 0)') {
             setBaseBgColor(articleBgcVal)
         }
-        if(bodyFontColor !== 'rgb(0, 0, 0)'){
+        if (bodyFontColor !== 'rgb(0, 0, 0)') {
             setDtColor(bodyFontColor)
         }
-        if(articleFontColor !== 'rgb(0, 0, 0)'){
+        if (articleFontColor !== 'rgb(0, 0, 0)') {
             setDtColor(articleFontColor)
         }
     })
 
     return (
-        <ul className={Style.root}>
+        <ul
+            ref={ref}
+            className={clsx(
+                Style.root,
+                Animation.fadeInFromLeftAnimation,
+                {[Animation.isAnimated]: show}
+            )}
+        >
             {
                 children.items.map((item, i) => {
                     return (
                         <li key={i}>
                             <dl>
                                 <dt className={Style.fHeadLine} style={{backgroundColor: baseBgColor}}>
-                                    <span className={Style.bar} style={{backgroundColor:dtColor}}></span>
+                                    <span className={Style.bar} style={{backgroundColor: dtColor}}></span>
                                     <span className={Style.text}>
                                         {
                                             item.filter((term, i) => i === 0)[0]
