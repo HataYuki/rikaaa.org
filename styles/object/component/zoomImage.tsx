@@ -19,8 +19,7 @@ const ZoomImage: NextPage<Props> = ({src, className}: Props) => {
                     src={src}
                     layout={'fill'}
                     objectFit={'cover'}
-                    loading={'eager'}
-                    priority={true}
+                    loading={'lazy'}
                 >
                 </Image>
             </figure>
