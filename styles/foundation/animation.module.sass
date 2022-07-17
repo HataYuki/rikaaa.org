@@ -1,4 +1,20 @@
 
+.pageIn,.pageOut
+  visibility: hidden
+  opacity: 0
+  transition: visibility,opacity 300ms ease-out
+.pageIn
+  visibility: visible
+  opacity: 1
+.pageOut
+  visibility: hidden
+  opacity: 0
+  animation: up ease-out 300ms normal both
+@keyframes up
+  0%
+    transform: translateY(0)
+  100%
+    transform: translateY((40*1)*-1px)
 
 .fadeInAnimation
   visibility: hidden
