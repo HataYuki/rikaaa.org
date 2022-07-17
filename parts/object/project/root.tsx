@@ -20,86 +20,68 @@ interface Props {
 }
 
 const Root: NextPage<Props> = ({children, headerColor, articleDark, showTitle, hasPadding, postList}: Props) => {
-    const [fontActive, setFontActive] = useState(false);
-    const [changeStart, setChangeStart] = useState(false)
-    const [clearChildren, setClearChildren] = useState(false)
+    // const [showPage, setShowPage] = useState(false);
+    const [pageChanging, setPageChanging] = useState(false)
     const router = useRouter()
 
-    const pageChangeStart = () => {
-        setChangeStart(true)
+    // const handleFontLoad = () => {
+    //     const ts = (window as any).Ts;
+    //     if (ts) {
+    //         ts.onFontLoaded(() =>  setShowPage(true))
+    //         ts.loadFont()
+    //     }
+    // }
+
+    const handleChange = () => {
+        setPageChanging(true)
+        // setShowPage(false)
     }
-    const pageChangeComplete = () => {
-        setChangeStart(false)
-        setClearChildren(false)
-    }
-    const historyChange = () =>{
-        setClearChildren(true)
-        setFontActive(false)
+    const handleComplete = () => {
+        setPageChanging(false)
+        // setShowPage(true)
     }
 
     useEffect(() => {
-        const ts = (window as any).Ts;
-
-        if (ts) {
-            ts.onFontLoaded(() => {
-                setFontActive(true)
-            })
-            ts.loadFont()
-        }
-
-        router.events.on('routeChangeStart', pageChangeStart)
-        router.events.on('routeChangeComplete', pageChangeComplete)
-        router.events.on('beforeHistoryChange', historyChange)
-
-
+        router.events.on('routeChangeStart', handleChange)
+        router.events.on('routeChangeComplete', handleComplete)
         return () => {
-            // setClearChildren(false)
-            router.events.off('routeChangeStart', pageChangeStart)
-            router.events.off('routeChangeComplete', pageChangeComplete)
-            router.events.off('beforeHistoryChange', historyChange)
+            router.events.off('routeChangeStart', handleChange)
+            router.events.off('routeChangeComplete', handleComplete)
         }
     })
-
-    const mainContent = () => {
-        if (!clearChildren) {
-            return children
-        }
-    }
-
 
     return (
         <div className={clsx(
             Style.root,
             {[Style.hasPadding]: hasPadding},
-            {[Animation.fadeInAnimation]: !changeStart},
-            {[Animation.fadeOutAnimation]: changeStart},
-            {[Animation.isAnimated]: fontActive}
+            {[Animation.pageOut]:pageChanging},
+            {[Animation.pageIn]:!pageChanging}
+            // Animation.fadeInAnimation,
+            // {[Animation.isAnimated]: showPage}
         )}>
             <Head>
                 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/yakuhanjp@3.4.1/dist/css/yakuhanjp.min.css"/>
+                <link rel="prefetch" as={'style'}
+                      href="https://cdn.jsdelivr.net/npm/yakuhanjp@3.4.1/dist/css/yakuhanjp.min.css"/>
                 <title>rikaaa.org</title>
             </Head>
             <Script
                 id="typesquare"
                 type="text/javascript"
-                src="//typesquare.com/3/tsst/script/ja/typesquare.js?62a9709b11cc48549c2a5d10ac1e02e5&auto_load_font=false&onload=false"
+                src="//typesquare.com/3/tsst/script/ja/typesquare.js?62a9709b11cc48549c2a5d10ac1e02e5&auto_load_font=true&onload=true&fadein=-1"
                 charSet="utf-8"
-                strategy={'beforeInteractive'}
+                async={true}
+                strategy={'lazyOnload'}
             >
             </Script>
-            <Script
-                id={'vimeo_api'}
-                src={'https://player.vimeo.com/api/player.js'}
-                strategy={'beforeInteractive'}
-            >
-            </Script>
+
             <Header postList={postList} color={headerColor} title={showTitle}/>
-            <article className={clsx(
-                {[Style.dark]: articleDark},
-            )}>
+            <article
+                className={clsx(
+                    {[Style.dark]: articleDark}
+                )}>
                 <main>
-                    {mainContent()}
+                    {children}
                 </main>
             </article>
             <Footer/>
