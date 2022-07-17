@@ -69,8 +69,7 @@ const Vision: NextPage = () => {
                             src={'/vision_img_01.jpg'}
                             layout={'fill'}
                             objectFit={'cover'}
-                            loading={'eager'}
-                            priority={true}
+                            loading={'lazy'}
                         ></Image>
                     </div>
                     <div className={Style.textBlock}>
