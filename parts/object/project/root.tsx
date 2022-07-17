@@ -27,16 +27,20 @@ const Root: NextPage<Props> = ({children, headerColor, articleDark, showTitle, h
 
     const pageChangeStart = () => {
         setChangeStart(true)
-        setTimeout(() => setClearChildren(true), 300)
     }
     const pageChangeComplete = () => {
-        setClearChildren(false)
         setChangeStart(false)
+        setClearChildren(false)
+    }
+    const historyChange = () =>{
+        setClearChildren(true)
+        setFontActive(false)
     }
 
     useEffect(() => {
         const ts = (window as any).Ts;
-        if (ts && !changeStart) {
+
+        if (ts) {
             ts.onFontLoaded(() => {
                 setFontActive(true)
             })
@@ -45,11 +49,14 @@ const Root: NextPage<Props> = ({children, headerColor, articleDark, showTitle, h
 
         router.events.on('routeChangeStart', pageChangeStart)
         router.events.on('routeChangeComplete', pageChangeComplete)
+        router.events.on('beforeHistoryChange', historyChange)
 
 
         return () => {
+            // setClearChildren(false)
             router.events.off('routeChangeStart', pageChangeStart)
             router.events.off('routeChangeComplete', pageChangeComplete)
+            router.events.off('beforeHistoryChange', historyChange)
         }
     })
 
@@ -66,7 +73,7 @@ const Root: NextPage<Props> = ({children, headerColor, articleDark, showTitle, h
             {[Style.hasPadding]: hasPadding},
             {[Animation.fadeInAnimation]: !changeStart},
             {[Animation.fadeOutAnimation]: changeStart},
-            {[Animation.isAnimated]:fontActive}
+            {[Animation.isAnimated]: fontActive}
         )}>
             <Head>
                 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
