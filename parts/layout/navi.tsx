@@ -87,7 +87,7 @@ const Navi: NextPage<Props> = ({visibility, onClick, addSwiper, postList}: Props
                                     </button>
                                 </li>
                                 <li>
-                                    <Link href={'/aboutme'}>
+                                    <Link href={'/about_me'}>
                                         <a className={Style.fSubHeadLine} href="" onClick={handleClick}>
                                             ABOUT ME
                                         </a>

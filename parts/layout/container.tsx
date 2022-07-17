@@ -6,6 +6,7 @@ import clsx from "clsx"
 
 interface Props {
     children: React.ReactNode,
+    className?: string
     mb70?: boolean
     pd70?: boolean
     mb100?: boolean
@@ -17,6 +18,7 @@ interface Props {
 
 const Container: NextPage<Props> = ({
                                         children,
+                                        className,
                                         mb70,
                                         pd70,
                                         mb100,
@@ -34,6 +36,7 @@ const Container: NextPage<Props> = ({
         }} className={
             clsx(
                 Style.root,
+                className,
                 {[Style.mb70]: mb70},
                 {[Style.pd70]: pd70},
                 {[Style.mb100]: mb100},
@@ -45,10 +48,10 @@ const Container: NextPage<Props> = ({
             </div>
             <div className={Style.barCtn}>
                 <span className={
-                clsx(
-                    {[Style.border]: border}
-                )
-            }></span>
+                    clsx(
+                        {[Style.border]: border}
+                    )
+                }></span>
             </div>
         </InView>
     )

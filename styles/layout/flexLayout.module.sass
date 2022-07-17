@@ -74,6 +74,26 @@
         display: block
 
 
+.typeRow3
+  flex-wrap: wrap
+  margin-bottom: 70px
+  @include lg
+    justify-content: space-between
+    flex-wrap: nowrap
+  .item
+    width: 100%
+    margin-bottom: 100px
+    @include lg
+      margin-right: 24px
+      width: calc(33.333% - (24 / 3 * 1px))
+      max-width: 370px
+      margin-bottom: 0
+
+    &:last-child
+      margin-bottom: 0
+      margin-right: 0
+
+
 //.root
 //  overflow: hidden
 //  ul

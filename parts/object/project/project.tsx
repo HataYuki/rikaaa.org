@@ -1,18 +1,25 @@
 import type {NextPage} from 'next'
+import {useState} from 'react'
 import Container from "../../layout/container";
 import Style from 'styles/object/project/project.module.sass'
+import Animation from 'styles/foundation/animation.module.sass'
+import {useInView} from 'react-intersection-observer'
 import Definition from "../component/definition";
 import MediaList from "./mediaList";
 import DevelopEv from "./developEv";
 import type {Post} from "@lib/posts";
+import clsx from 'clsx'
+
 
 interface Props {
     post: Post
 }
 
 const Project: NextPage<Props> = ({post}: Props) => {
-    const developEv = () =>{
-        if(post.environment.length){
+    const [showHeadLine, setShowHeadLine] = useState(false)
+
+    const developEv = () => {
+        if (post.environment.length) {
             return (
                 <section>
                     <Container pb100={true}>
@@ -29,9 +36,22 @@ const Project: NextPage<Props> = ({post}: Props) => {
         }
     }
 
+    const {ref, inView, entry} = useInView({
+        triggerOnce: true,
+        threshold:0.1,
+        onChange: (InView, entry) => setShowHeadLine(entry.isIntersecting)
+    })
+
     return (
         <>
-            <section className={Style.headLine}>
+            <section
+                ref={ref}
+                className={clsx(
+                    Style.headLine,
+                    Animation.fadeInUpAnimation,
+                    {[Animation.isAnimated]: showHeadLine}
+                )}
+            >
                 <Container pb100={true}>
                     <div className={Style.text}>
                         <h3 className={Style.fHeadLine}>
@@ -42,8 +62,8 @@ const Project: NextPage<Props> = ({post}: Props) => {
                                 post
                                     .description
                                     .article
-                                    .split('\n').map((paragraph,i)=>{
-                                    return(
+                                    .split('\n').map((paragraph, i) => {
+                                    return (
                                         <p key={i}>
                                             {paragraph}
                                         </p>
@@ -59,10 +79,10 @@ const Project: NextPage<Props> = ({post}: Props) => {
                     <MediaList>
                         {{
                             media: (
-                                post.media.map(media=>{
-                                    return{
-                                        image:media.image,
-                                        video:media.video
+                                post.media.map(media => {
+                                    return {
+                                        image: media.image,
+                                        video: media.video
                                     }
                                 })
                             )

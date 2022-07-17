@@ -1,5 +1,8 @@
 import type {NextPage} from 'next'
+import {useState} from 'react'
 import Style from 'styles/object/component/imageBtn.module.sass'
+import Animation from 'styles/foundation/animation.module.sass'
+import {InView} from 'react-intersection-observer'
 import ZoomImage from "@styles/object/component/zoomImage";
 import clsx from 'clsx'
 
@@ -15,6 +18,8 @@ interface Props {
 }
 
 const ImageBtn: NextPage<Props> = ({isBtn, src, children, onClick}: Props) => {
+    const [intersect, setIntersect] = useState(false)
+
     const maskStyle = () => {
         if (isBtn) {
             return [Style.mask, Style.wh100, Style.gradient]
@@ -40,23 +45,28 @@ const ImageBtn: NextPage<Props> = ({isBtn, src, children, onClick}: Props) => {
             <ZoomImage src={src}/>
             <span className={clsx(maskStyle())}></span>
         </div>
-        {mainText()}
+        {
+            mainText()
+        }
     </>
+
 
     const btn = () => {
         if (isBtn) {
             return (
-                <button className={Style.root} onClick={(e) => {
-                    if (onClick) {
-                        onClick(e)
-                    }
-                }}>
+                <button
+                    className={Style.root}
+                    onClick={(e) => {
+                        if (onClick) {
+                            onClick(e)
+                        }
+                    }}>
                     {content}
                 </button>
             )
         } else {
             return (
-                <div className={Style.root}>
+                <div className={clsx(Style.wh100)}>
                     {content}
                 </div>
             )
