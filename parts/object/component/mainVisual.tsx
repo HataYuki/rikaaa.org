@@ -1,5 +1,5 @@
 import type {NextPage} from "next";
-import {useState, useEffect, useRef} from 'react'
+import {useState, useEffect} from 'react'
 import {useRouter} from 'next/router'
 import Style from "/styles/object/component/mainVisual.module.sass"
 import Animation from '/styles/foundation/animation.module.sass'
@@ -16,16 +16,23 @@ interface Props {
 const MainVisual: NextPage<Props> = ({onIntersect}: Props) => {
     const router = useRouter()
     const [winH, setWinH] = useState(0)
-    const [vimeoReady, setVimeoReady] = useState(false)
-    const vimeo = useRef(null)
+    const [vimeoPlayed, setVimeoPlayed] = useState(false)
+
     useEffect(() => {
         setWinH(innerHeight || document.documentElement.clientHeight)
 
         const Vimeo = (window as any).Vimeo
         if (Vimeo) {
-            const player = new Vimeo.Player(vimeo.current)
+            const player = new Vimeo.Player('vimeo_bg', {
+                id: '729215901',
+                background: true,
+                autoplay: true,
+                loop: true,
+                byline: false,
+                title: false
+            })
 
-            player.ready().then(() => setVimeoReady(true))
+            player.on('play', () => setVimeoPlayed(true))
         }
     })
     return (
@@ -38,23 +45,24 @@ const MainVisual: NextPage<Props> = ({onIntersect}: Props) => {
                 }
             }}
         >
-            <iframe
+            <div
+                id={'vimeo_bg'}
                 className={clsx(
-                    Style.vimeo,
+                    Style.vimeoBg,
                     Animation.fadeInAnimation,
-                    {[Animation.isAnimated]: vimeoReady}
+                    {[Animation.isAnimated]: vimeoPlayed}
                 )}
-                src="https://player.vimeo.com/video/729215901?background=1&autoplay=1&loop=1&byline=0&title=0"
-                frameBorder="0"
-                ref={vimeo}
             >
-            </iframe>
+
+            </div>
             <Container className={Style.overlay}>
-                <div className={clsx(
-                    Style.overlayItem,
-                    Animation.fadeInFromLeftAnimation,
-                    {[Animation.isAnimated]: vimeoReady}
-                )}>
+                <div
+                    className={clsx(
+                        Style.overlayItem,
+                        Animation.fadeInFromLeftAnimation,
+                        {[Animation.isAnimated]: vimeoPlayed}
+                    )}
+                >
                     <ul className={clsx(
                         Style.fHeadLine,
                         Style.menu
