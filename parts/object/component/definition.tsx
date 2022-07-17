@@ -22,7 +22,8 @@ const Definition: NextPage<Props> = ({children}: Props) => {
     const [show, setShow] = useState(false)
 
     const {ref, inView, entry} = useInView({
-        threshold: 0.5,
+        rootMargin:'0px',
+        threshold: 0.2,
         triggerOnce: true,
         onChange: (inView, entry) => setShow(entry.isIntersecting)
     })
