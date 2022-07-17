@@ -91,7 +91,7 @@ const Project: NextPage<Props> = ({post}: Props) => {
                 </Container>
             </section>
 
-            {developEv}
+            {developEv()}
 
             <section className={Style.info}>
                 <Container pb100={true}>
