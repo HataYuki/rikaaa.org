@@ -42,13 +42,15 @@ const Index: NextPage<Props> = ({postIndexList}: Props) => {
     return (
         <Root postList={postIndexList} headerColor={headerColor} showTitle={false}>
             <section style={style.mainVisualSection}>
-                <MainVisual onIntersect={(isIntersect) => {
-                    if (isIntersect) {
-                        setHeaderColor(() => 'light')
-                    } else {
-                        setHeaderColor(() => 'dark')
-                    }
-                }}/>
+                <Container>
+                    <MainVisual onIntersect={(isIntersect) => {
+                        if (isIntersect) {
+                            setHeaderColor(() => 'light')
+                        } else {
+                            setHeaderColor(() => 'dark')
+                        }
+                    }}/>
+                </Container>
             </section>
             <section>
                 <Container mb100={true} pb100={true} border={true}>

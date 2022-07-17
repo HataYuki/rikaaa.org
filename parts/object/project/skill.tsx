@@ -16,7 +16,7 @@ const Skill: NextPage = () =>{
                 }}
             </Headline>
             <SkillList />
-            <TextBtn align={'right'} onClick={()=>router.push('/aboutme')}>
+            <TextBtn align={'right'} onClick={()=>router.push('/about_me')}>
                 about me
             </TextBtn>
         </React.Fragment>

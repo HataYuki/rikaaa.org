@@ -23,7 +23,7 @@ const Footer: NextPage = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/aboutme">
+                                <Link href="/about_me">
                                     <a>ABOUT ME</a>
                                 </Link>
                             </li>
