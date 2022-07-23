@@ -1,0 +1,32 @@
+@import "styles/utility.module"
+@import "styles/variables.module"
+@import "styles/functions.module"
+@import "styles/font.module"
+@import "styles/animation.module"
+
+.definitions
+  &__item
+    align-items: flex-start
+  &__term
+    font-size: genClamp(14, 18, 375, $medium)
+    margin-bottom: 0.618em
+    flex-grow: 1
+    color: darken($gray, 50)
+    @include medium
+      margin-bottom: 0
+      margin-right: 17px
+
+  &__description
+    font-size: genClamp(12, 16, 375, $medium)
+
+  &__innerLink
+    justify-content: center
+    align-items: center
+    @include medium
+      justify-content: flex-start
+
+  &__icon
+    margin-left: 17px
+
+  &__bar
+    background-color: darken($gray, 10)

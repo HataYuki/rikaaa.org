@@ -1,12 +1,19 @@
-import '../styles/base.sass'
+import type {AppProps} from 'next/app'
+import {AnimatePresence} from "framer-motion";
 import 'destyle.css/destyle.css'
-import 'normalize.css/normalize.css'
+import '../styles/base.sass'
 import '/node_modules/swiper/swiper-bundle.min.css'
 
-import type { AppProps } from 'next/app'
+import {getPostIndexList} from "../lib/posts";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+
+
+function MyApp({Component, pageProps, router}: AppProps) {
+    return (
+        <AnimatePresence exitBeforeEnter onExitComplete={() => window.scrollTo(0, 0)}>
+            <Component key={router.asPath} {...pageProps} />
+        </AnimatePresence>
+    )
 }
 
 export default MyApp

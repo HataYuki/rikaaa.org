@@ -1,0 +1,26 @@
+@import "styles/utility.module"
+@import "styles/variables.module"
+@import "styles/animation.module"
+
+.footer
+  padding: 17px 0
+
+  &__title
+    font-size: 20px
+    margin-bottom: 1.618em
+    @include small
+      margin-bottom: 0
+      margin-right: 28px
+
+  &__link
+    font-size: 13px
+    margin-bottom: 0.618em
+    cursor: pointer
+    &:last-child
+      margin-bottom: 0
+    @include small
+      margin-bottom: 0
+      margin-right: 17px
+      &:last-child
+        margin-right: 0
+

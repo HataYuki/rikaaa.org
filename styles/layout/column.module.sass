@@ -1,0 +1,36 @@
+@use "sass:math"
+@import "styles/variables.module"
+@import "styles/utility.module"
+@import "styles/font.module"
+@import "styles/functions.module"
+
+
+.block
+  align-items: center
+  display: flex
+  flex-wrap: wrap
+  @include small
+    flex-wrap: nowrap
+
+.reverse
+  flex-direction: row-reverse
+
+.columnReverse
+  flex-direction: column-reverse
+
+
+.left
+  @include small
+    padding-left: genClamp(46, 123, $small, $big)
+    padding-right: genClamp(46, 76, $small, $big)
+    &.reverse
+      padding-right: genClamp(46, 123, $small, $big)
+      padding-left: genClamp(46, 76, $small, $big)
+
+.right
+  @include small
+    padding-left: genClamp(17, 28, $small, $big)
+    padding-right: genClamp(28, 123, $small, $big)
+    &.reverse
+      padding-right: genClamp(17, 28, $small, $big)
+      padding-left: genClamp(28, 123, $small, $big)

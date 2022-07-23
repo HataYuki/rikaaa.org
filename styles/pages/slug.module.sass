@@ -1,0 +1,91 @@
+@import "styles/utility.module"
+@import "styles/font.module"
+@import "styles/functions.module"
+@import "styles/font.module"
+
+.headline
+  height: 100vh
+  min-height: 600px
+  max-height: 900px
+  @include small
+   min-height: 750px
+
+  &__eyeCatchContainer
+    width: genClamp(280, 500, 375, $medium)
+    height: genClamp(400, 700, 375, $medium)
+
+  &__eyeCatch
+    width: genClamp(280, 500, 375, $medium)
+    height: genClamp(280, 500, 375, $medium)
+    margin: 0 auto
+
+  &__title
+    color: darken($gray, 60)
+    width: 50vw
+    font-size: genClamp(25, 40, 375, $medium)
+
+  &__bar
+    background-color: darken($gray, 50)
+
+  &__bulletList
+    justify-content: center
+
+  &__bullet
+    position: relative
+    height: 1px
+    width: 50px
+    background-color: darken($gray, 20)
+    margin-right: 17px
+    &:last-child
+      margin-right: 0
+
+    &:before
+      content: ""
+      position: absolute
+      height: 100%
+      width: 0%
+      background-color: $black
+
+  &__currentBullet
+    &:before
+      transition: width 3100ms linear
+      width: 100%
+
+
+
+.copy
+  width: 90%
+  margin-right: auto
+  margin-left: auto
+  &__text
+    font-size: genClamp(16,25,375,$medium)
+
+
+.article
+  border-radius: 6px
+  padding: 17px
+  &__paragraph
+    margin-bottom: 1.618em
+
+
+.media
+  border-radius: 6px
+  &__container
+    max-width: 1000px
+    margin-left: auto
+    margin-right: auto
+  &__video
+    width: 100%
+
+
+.env
+  justify-content: center
+  flex-wrap: wrap
+  font-size: 12px
+  &__item
+    padding: 10px 17px
+    margin-right: 17px
+    &:last-child
+      margin-right: 0
+
+

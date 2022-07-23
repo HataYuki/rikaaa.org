@@ -1,0 +1,32 @@
+@import "styles/utility.module"
+
+.skill
+  @include small
+    height: 550px
+
+  &__imgContainer
+    height: 400px
+    padding: 0 76px 76px 76px
+    @include small
+      height: 100%
+      padding: 0
+
+  &__text
+    border-radius: 6px
+    padding: 76px 46px
+    @include small
+      padding: 76px
+
+  &__title
+    font-size: 17px
+    color: darken($gray, 50)
+    letter-spacing: 0.59em
+
+  &__article
+    font-size: 12px
+    text-align: left
+    p
+      margin-bottom: 1em
+      line-height: 1.618em
+      &:last-child
+        margin-bottom: 0
