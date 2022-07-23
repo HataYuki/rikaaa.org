@@ -47,7 +47,7 @@ const Doc = ({children, postIndexList}: Props) => {
                         animate={'enter'}
                         exit={'exit'}
                         transition={{
-                            duration: 100000,
+                            duration: 0.6,
                             ease: [0, 1.03, .8, .99]
                         }}
                     >
