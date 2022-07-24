@@ -16,7 +16,7 @@ const VimeoBg = ({className}: Props) => {
             return(
                 <iframe
                     src="https://player.vimeo.com/video/729215901?h=235145bfab&title=0&byline=0&autoplay=1&loop=1&background=1"
-                    frameborder="0"
+                    frameBorder="0"
                     allow={'autoplay;'}
                 >
                 </iframe>
