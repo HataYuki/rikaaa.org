@@ -28,7 +28,7 @@ const Doc = ({children, postIndexList}: Props) => {
             <Script
                 id="typesquare"
                 type="text/javascript"
-                src="//typesquare.com/3/tsst/script/ja/typesquare.js?62a9709b11cc48549c2a5d10ac1e02e5&auto_load_font=true&onload=true&fadein=-1"
+                src="//typesquare.com/3/tsst/script/ja/typesquare.js?62a9709b11cc48549c2a5d10ac1e02e5&onload=true&fadein=-1"
                 charSet="utf-8"
                 async={true}
                 strategy={'lazyOnload'}
