@@ -79,6 +79,7 @@ const Definition = ({children}: Props) => {
                             <FadeIn type={'fadeUp'} className={Styles.w100}>
                                 <div className={clsx(
                                     {[Styles.flex]: (minWidth >= BREAKPOINTS.win_medium)},
+                                    Styles.definitions__flexArea
                                 )}>
                                     <LineText
                                         className={clsx(
