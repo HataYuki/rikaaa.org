@@ -1,0 +1,107 @@
+@use "sass:math"
+@import "styles/utility.module"
+@import "styles/font.module"
+@import "styles/functions.module"
+@import "styles/animation.module"
+
+
+.mainVisual
+  position: relative
+  height: 100vh
+  min-height: 600px
+  max-height: 900px
+  background-color: $gray
+
+  &__video
+    width: genClamp(270, 809, 375, $big)
+    height: genClamp(436, 500, 375, $big)
+    right: 0
+    overflow: hidden
+
+  &__title
+    top: 55%
+
+    h1
+      border-radius: 10px
+      font-size: genClamp(30, 80, 375, $medium)
+
+    p
+      font-size: genClamp(12, 18, 375, $medium)
+
+  &__links
+    width: 61%
+    margin: 0 auto
+    bottom: 0
+    transform: translateY(50%)
+    right: 0
+    justify-content: space-between
+    display: none
+    @include small
+      display: block
+
+  &__link
+    margin-right: 17px
+    width: calc(33.333333% - (17px * 2) / 3)
+
+    &:last-child
+      margin-right: 0
+
+
+
+
+.firstWork
+  height: 550px
+
+  &__title
+    font-size: genClamp(18, 28, $small, $big)
+    margin-bottom: 0.59em
+    text-align: left
+
+  &__article
+    font-size: genClamp(12, 13, $small, $big)
+
+
+
+
+.visions
+  justify-content: center
+
+  .visionItem
+    @include small
+      width: calc(50% - (46px / 2))
+      margin-right: 46px
+      &:last-child
+        margin-right: 0
+
+.visionTitle
+  font-size: 20px
+  letter-spacing: 0.59em
+  color: darken($gray, 50)
+
+.visionArticle
+  line-height: 1.619em
+  font-size: genClamp(13, 15, $small, $medium)
+  padding: 0 genClamp(51, 33, 0, $medium)
+
+  p
+    margin-bottom: 1.618em
+
+    &:last-child
+      margin-bottom: 0
+
+
+
+
+
+.advertise
+  &__item
+    max-width: genClamp(200,270,320,$small)
+    margin-right: auto
+    margin-left: auto
+    @include small
+      max-width: genClamp(180,220,$small,$large)
+
+
+
+
+

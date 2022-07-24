@@ -1,0 +1,325 @@
+@use "sass:math"
+@import "variables.module"
+@import "functions.module"
+@import "font.module"
+
+// utility
+.none
+  display: none !important
+
+.display
+  &_block
+    display: block
+  &_inlineBlock
+    display: inline-block
+
+.w100
+  width: 100%
+
+.h100
+  height: 100%
+
+.wh100
+  width: 100%
+  height: 100%
+
+.fullWidth
+  width: 100vw
+  margin: calc(50% - 50vw)
+
+.mb200
+  margin-bottom: 200px
+
+.mb123
+  margin-bottom: 123px
+
+.mb76
+  margin-bottom: 76px
+
+.mb46
+  margin-bottom: 46px
+
+.mb28
+  margin-bottom: 28px
+
+.mb17
+  margin-bottom: 17px
+
+
+.pb200
+  padding-bottom: 200px
+
+.pb123
+  padding-bottom: 123px
+
+.pb76
+  padding-bottom: 76px
+
+.pb46
+  padding-bottom: 46px
+
+.pb28
+  padding-bottom: 28px
+
+.pb17
+  padding-bottom: 17px
+
+
+.mt200
+  margin-top: 200px
+
+.mt123
+  margin-top: 123px
+
+.mt76
+  margin-top: 76px
+
+.mt46
+  margin-top: 46px
+
+.mt28
+  margin-top: 28px
+
+.mt17
+  margin-top: 17px
+
+
+.pt200
+  padding-top: 200px
+
+.pt123
+  padding-top: 123px
+
+.pt76
+  padding-top: 76px
+
+.pt46
+  padding-top: 46px
+
+.pt28
+  padding-top: 28px
+
+.pt17
+  padding-top: 17px
+
+.ptHeader
+  padding-top: $headerH * 1px
+
+.mw300
+  max-width: 300px
+  margin-right: auto
+  margin-left: auto
+
+.mw980
+  max-width: 980px
+  margin-right: auto
+  margin-left: auto
+
+.mw1380
+  max-width: 1380px
+  margin-right: auto
+  margin-left: auto
+
+.mw1440
+  max-width: $large*1px
+  margin-right: auto
+  margin-left: auto
+
+.sideSpace
+  &_mg
+    margin-right: genClamp(17, 28, $small, $large)
+    margin-left: genClamp(17, 28, $small, $large)
+
+  &_pd
+    padding-right: genClamp(17, 28, $small, $large)
+    padding-left: genClamp(17, 28, $small, $large)
+
+.mw300, .mw980, .mw1380, .mw1440
+  & > .inner
+    &_mg
+      @extend .sideSpace_mg
+
+    &_pd
+      @extend .sideSpace_pd
+
+
+.bgColor
+  &_black
+    background-color: $black
+
+  &_white
+    background-color: $white
+
+  &_gray
+    background-color: $gray
+
+.fontColor
+  &_black
+    color: $black
+
+  &_white
+    color: $white
+
+  &_gray
+    color: $gray
+
+  &_blue
+    color: $blue
+
+
+.flex
+  display: flex
+
+  &.center
+    align-items: center
+    justify-content: space-between
+  &_center
+    display: flex
+    align-items: center
+    justify-content: space-between
+    &_bottom
+      display: flex
+      align-items: flex-end
+      justify-content: space-between
+
+
+
+  &_gRow2
+    display: flex
+
+    > *
+      &:first-child
+        width: 100% * math.div(1.618, 2.618)
+
+      &:last-child
+        width: 100% * math.div(1, 2.618)
+
+  &.col2
+    flex-wrap: wrap
+    > *
+      width: 50%
+
+    &_mg17
+      flex-wrap: wrap
+
+      > *
+        width: calc(50% - (17px * 1 / 2))
+        margin-right: 17px
+
+        &:nth-child(2n)
+          margin-right: 0
+
+
+  &.col3
+    flex-wrap: wrap
+
+    > *
+      width: 33.3333%
+
+    &_mg17
+      flex-wrap: wrap
+
+      > *
+        width: calc(33.3333% - (17px * 2 / 3))
+        margin-right: 17px
+
+        &:nth-child(3n)
+          margin-right: 0
+
+  &.col4
+    flex-wrap: wrap
+
+    > *
+      width: 25%
+
+    &_mg17
+      flex-wrap: wrap
+
+      > *
+        width: calc(25% - (17px * 3 / 4))
+        margin-right: 17px
+
+        &:nth-child(4n)
+          margin-right: 0
+
+
+.text
+  &_center
+    text-align: center
+
+  &_right
+    text-align: right
+
+  &_left
+    text-align: left
+
+
+.relative
+  position: relative
+
+.absolute
+  position: absolute
+
+  &_centerCenter
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+
+  &_centerAuto
+    position: absolute
+    left: 50%
+    transform: translateX(-50%)
+
+  &_autoCenter
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+
+.top0
+  top: 0
+.left0
+  left: 0
+
+.add
+  &_before
+    &:before
+      content: ""
+      display: inline-block
+
+  &_after
+    &:after
+      content: ""
+      display: inline-block
+
+
+.textOverflow
+  &_c1
+    word-break: break-all
+    display: -webkit-box !important
+    overflow: hidden
+    text-overflow: ellipsis
+    -webkit-box-orient: vertical
+    -webkit-line-clamp: 1
+
+  &_c2
+    word-break: break-all
+    display: -webkit-box !important
+    overflow: hidden
+    text-overflow: ellipsis
+    -webkit-box-orient: vertical
+    -webkit-line-clamp: 2
+
+  &_c3
+    word-break: break-all
+    display: -webkit-box !important
+    overflow: hidden
+    text-overflow: ellipsis
+    -webkit-box-orient: vertical
+    -webkit-line-clamp: 3
+
+
+.br6
+  border-radius: 6px
+  overflow: hidden
+

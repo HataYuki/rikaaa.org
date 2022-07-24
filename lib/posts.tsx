@@ -1,4 +1,6 @@
-import app from "@lib/db";
+import app from "./db";
+import imageSize from "@coderosh/image-size"
+
 
 export interface PostIdSlug {
     id: string
@@ -15,6 +17,10 @@ export interface PostIndex {
         en: string
         ja: string
         subTextEn: string
+    },
+    description: {
+        article: string
+        copy: string
     }
 }
 
@@ -35,6 +41,7 @@ export interface Post {
     }
     media: Array<{
         image: string
+        imageSize: Array<number>
         video: Array<string>
         embedUrl: string
         caption: string
@@ -47,7 +54,6 @@ export interface Post {
 }
 
 
-export type PostList = Array<Post>
 export type PostIndexList = Array<PostIndex>
 export type PostIdSlugList = Array<PostIdSlug>
 
@@ -81,7 +87,8 @@ export const getPostIndexList = async (): Promise<PostIndexList> => {
             'projectType',
             'slug',
             'eyeCatch',
-            'headLine'
+            'headLine',
+            'description',
         ],
         populate: [
             {
@@ -107,6 +114,7 @@ export const getPostIndexList = async (): Promise<PostIndexList> => {
                 return image.url
             }),
             headLine: obj.headLine,
+            description: obj.description,
         }
     }).sort((a: PostIndex, b: PostIndex) => {
         return a.order - b.order
@@ -142,7 +150,7 @@ export const getPost = async (id: string): Promise<Post> => {
                         populate: [
                             {
                                 field: 'image',
-                                fields: ['url']
+                                fields: ['url', 'size']
                             },
                             {
                                 field: 'video',
@@ -172,6 +180,16 @@ export const getPost = async (id: string): Promise<Post> => {
         ]
     })
 
+
+    const imageSizeList: Array<number> = await Promise.all(data.images.map(async (image: any) => {
+        if (image.image.image.length) {
+            const size: any = await imageSize(image.image.image[0].url)
+            return [Number(size.width), Number(size.height)]
+        } else {
+            return [-1, -1]
+        }
+    }))
+
     return {
         id: id,
         order: data.orderNumber,
@@ -181,9 +199,10 @@ export const getPost = async (id: string): Promise<Post> => {
             return image.url
         }),
         headLine: data.headLine,
-        media: (!data.images) ? [] : data.images.map((image: any) => {
+        media: (!data.images) ? [] : data.images.map((image: any, i: number) => {
             return {
                 image: (image.image.image.length) ? image.image.image[0].url : '',
+                imageSize: (image.image.image.length) ? imageSizeList[i] : [-1, -1],
                 video: (image.image.video.length) ? image.image.video.map((v: any) => v.url) : [],
                 caption: (image.image.caption) ? image.image.caption : '',
                 embedUrl: (image.image.embedUrl) ? image.image.embedUrl : '',
@@ -208,6 +227,3 @@ export const getPostsByPType = async (projectType: string | string[]): Promise<P
 
     return result
 }
-
-
-
