@@ -51,11 +51,9 @@ const Doc = ({children, postIndexList}: Props) => {
                             ease: [0, 1.03, .8, .99]
                         }}
                     >
-                        <div>
-                            {
-                                children
-                            }
-                        </div>
+                        {
+                            children
+                        }
                     </motion.div>
                 </main>
             </article>
