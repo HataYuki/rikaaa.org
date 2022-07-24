@@ -17,12 +17,8 @@ const Doc = ({children, postIndexList}: Props) => {
         <>
             <Head>
                 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-                <link rel="prefetch" as={'style'}
+                <link rel="preload" as={'font'}
                       href="https://cdn.jsdelivr.net/npm/yakuhanjp@3.4.1/dist/css/yakuhanjp.min.css"/>
-                <link rel="prefetch stylesheet" as={'style'}
-                      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-
-                {/*<link rel="prefetch" as={'style'} href="https://use.typekit.net/lpe1hvk.css"/>*/}
                 <title>rikaaa.org</title>
             </Head>
             <Script
