@@ -36,9 +36,11 @@ const Definition = ({children}: Props) => {
                            Styles.display_block
                        )}>
                         <span className={clsx(Styles.flex, Styles.definitions__innerLink)}>
-                            {
-                                text
-                            }
+                            <span className={clsx(Styles.textOverflow_c1)}>
+                                {
+                                    text
+                                }
+                            </span>
                             <GoLinkExternal className={clsx(Styles.definitions__icon)}/>
                         </span>
                     </a>
