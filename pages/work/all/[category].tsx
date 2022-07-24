@@ -1,20 +1,19 @@
-import {NextPage, GetStaticProps, GetStaticPaths} from 'next'
-import {useRouter} from 'next/router'
-import Root from "../../../parts/object/project/root";
-import FlexLayout from "../../../parts/layout/flexLayout";
-import Container from "../../../parts/layout/container";
-
-import type {PostIndexList, PostList} from "@lib/posts";
-import {getPostIndexList, getPostsByPType} from "@lib/posts";
-import GoldenTile from "../../../parts/layout/goldenTile.";
-import ImageBtn from "../../../parts/object/component/imageBtn";
-import FlexStyle from 'styles/layout/flexLayout.module.sass'
-import MediaHide from 'styles/foundation/hide.module.sass'
+import type {NextPage, GetStaticPaths, GetStaticProps} from 'next'
+import {getPostIndexList} from "lib/posts";
+import type {PostIndexList} from "lib/posts";
+import Doc from "../../../parts/layout/doc";
+import FadeIn from "../../../parts/component/fadeIn";
+import Styles from '/styles/pages/category.module.sass'
+import clsx from 'clsx'
+import Thumbnail from "../../../parts/component/thumbnail";
+import {BREAKPOINTS} from "../../../lib/breakpoints";
+import {useBreakpoint} from "use-breakpoint";
 
 interface Props {
-    posts: PostList
+    thisCategoryIndexList: PostIndexList
     postIndexList: PostIndexList
 }
+
 
 export const getStaticPaths: GetStaticPaths = async () => {
     return {
@@ -32,79 +31,56 @@ export const getStaticProps: GetStaticProps = async (context) => {
     if (category === 'my_project') {
         type = 'self'
     }
-    const posts = await getPostsByPType(type)
     const postIndexList = await getPostIndexList()
     return {
         props: {
-            posts: posts,
+            thisCategoryIndexList: postIndexList.filter(post => post.projectType === type),
             postIndexList: postIndexList
         }
     }
 }
 
+const Category: NextPage<Props> = ({thisCategoryIndexList,postIndexList}) => {
 
-const Category: NextPage<Props> = ({posts, postIndexList}: Props) => {
-    const router = useRouter()
-
-    const goldenTileItems = posts.filter((post, i) => i < 3)
-    const flexLayout = posts.filter((post, i) => i >= 3)
+    const {minWidth} = useBreakpoint(BREAKPOINTS, 'win_small')
 
     return (
-        <Root ha-sPadding={true} postList={postIndexList} showTitle={true} hasPadding={true}
-              headerColor={'dark'}>
-            <Container border={true} pb100={true}>
-                <div className={MediaHide.mdHideLgShow}>
-                    <GoldenTile>
-                        {
-                            goldenTileItems.map((post, i) => {
-                                return (
-                                    <ImageBtn isBtn={true} src={post.eyeCatch[0]} key={i}
-                                              onClick={() => router.push(`/work/${post.slug}`)}>
-                                        {{
-                                            main: (post.headLine.en),
-                                        }}
-                                    </ImageBtn>
-                                )
-                            })
-                        }
-                    </GoldenTile>
+        <Doc postIndexList={postIndexList}>
+            <section className={clsx(Styles.mb200, Styles.ptHeader)}>
+                <div className={clsx(Styles.mw1380)}>
+                    <div className={clsx(Styles.sideSpace_mg)}>
+                        <ul
+                            className={clsx(
+                                {[Styles.flex]: (minWidth >= BREAKPOINTS.win_small)},
+                                {[Styles.col2_mg17]: (minWidth >= BREAKPOINTS.win_small && minWidth < BREAKPOINTS.win_medium)},
+                                {[Styles.col3_mg17]: (minWidth >= BREAKPOINTS.win_medium)}
+                            )}
+                        >
+                            {
+                                thisCategoryIndexList.map((post, i) => {
+                                    return (
+                                        <li key={i} className={clsx(Styles.mb123)}>
+                                            <FadeIn type={'fadeUp'}>
+                                                <Thumbnail
+                                                    href={`/work/${post.slug}`}
+                                                    label={`link to ${post.headLine.en}`}
+                                                >
+                                                    {{
+                                                        src: (post.eyeCatch[0]),
+                                                        title: (post.headLine.en),
+                                                        subText: ((post.headLine.subTextEn.split(',').join(' / ')))
+                                                    }}
+                                                </Thumbnail>
+                                            </FadeIn>
+                                        </li>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>
                 </div>
-
-                <div className={MediaHide.mdHideLgShow}>
-                    <FlexLayout layoutType={[FlexStyle.typeTile, FlexStyle.noGap, FlexStyle.golden]}>
-                        {
-                            flexLayout.map((post, i) => {
-                                return (
-                                    <ImageBtn isBtn={true} src={post.eyeCatch[0]} key={i}
-                                              onClick={() => router.push(`/work/${post.slug}`)}>
-                                        {{
-                                            main: (post.headLine.en),
-                                        }}
-                                    </ImageBtn>
-                                )
-                            })
-                        }
-                    </FlexLayout>
-                </div>
-
-                <div className={MediaHide.mdShowLgHide}>
-                    <FlexLayout layoutType={[FlexStyle.typeTile]}>
-                        {
-                            posts.map((post, i) => {
-                                return (
-                                    <ImageBtn isBtn={true} src={post.eyeCatch[0]} key={i}
-                                              onClick={() => router.push(`/work/${post.slug}`)}>
-                                        {{
-                                            main: (post.headLine.en),
-                                        }}
-                                    </ImageBtn>
-                                )
-                            })
-                        }
-                    </FlexLayout>
-                </div>
-            </Container>
-        </Root>
+            </section>
+        </Doc>
     )
 }
 

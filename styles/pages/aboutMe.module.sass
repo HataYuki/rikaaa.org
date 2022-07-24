@@ -1,0 +1,31 @@
+@import "styles/utility.module"
+@import "styles/variables.module"
+@import "styles/functions.module"
+
+.aboutMe
+
+  &__imgContainer
+    height: 350px
+
+  &__name, &__nameKana
+    letter-spacing: 0.618em
+
+  &__name
+    font-size: 20px
+
+  &__nameKana
+    font-size: 12px
+
+  &__profile
+    padding: genClamp(17,46,375,$small)
+    border-radius: 6px
+
+  &__sentenceContainer
+    font-size: 12px
+    text-align: left
+
+  &__sentence
+    margin-bottom: 1.618em
+    &:last-child
+      margin-bottom: 0
+

@@ -1,0 +1,21 @@
+@import "styles/utility.module"
+@import "styles/animation.module"
+
+.btn
+  padding-top: 100%
+  border-radius: 6px
+  overflow: hidden
+
+.add_before
+  &:before
+    position: absolute
+    @extend .wh100
+    background-color: rgba($black,0.3)
+    z-index: 1
+
+.text
+  pointer-events: none
+  text-align: center
+  padding-right: 1em
+  padding-left: 1em
+  font-size: genClamp(14,16,320,$small)

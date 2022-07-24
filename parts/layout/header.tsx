@@ -1,67 +1,74 @@
-import type {NextPage} from 'next'
-import React, {useState} from 'react'
-import Style from 'styles/layout/header.module.sass'
-import Container from './container'
-import Navi from './navi';
-import Link from 'next/link'
+import {useRouter} from "next/router";
+import {useState, useEffect} from 'react'
+import Nav from "./nav";
+import Styles from '/styles/layout/header.module.sass'
 import clsx from 'clsx'
-import type {PostIndexList} from "@lib/posts";
+import type {PostIndexList} from "../../lib/posts";
 
 interface Props {
-    onClick?: (e: any) => void
-    title: boolean
-    color: string
-    postList: PostIndexList
+    postIndexList: PostIndexList
 }
 
-const Header: NextPage<Props> = ({onClick, title, color, postList}: Props) => {
+const Header = ({postIndexList}: Props) => {
+    const router = useRouter()
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-    const [naviVisible, setNaviVisible] = useState(false);
-    const [swiper, setSwiper] = useState<any>(undefined)
-
-    const handleClick = (e: any) => {
-        setNaviVisible(!naviVisible);
-        if (onClick) {
-            onClick(e);
-        }
-        if (swiper) {
-            swiper.slidePrev()
-        }
+    const handleChangeStart = () => {
+        setIsMenuOpen(false)
     }
 
+    useEffect(() => {
+
+        router.events.on('routeChangeStart', handleChangeStart)
+
+        return (): void => {
+            router.events.off('routeChangeStart', handleChangeStart)
+        }
+    })
+
     return (
-        <header className={clsx(
-            Style.root,
-            {[Style.dark]: (color === 'dark' && !naviVisible)},
-            {[Style.light]: (color === 'light' || naviVisible)},
-            {[Style.showTitle]: title}
-        )}>
-            <Container>
-                <div className={Style.content}>
-                    <h1 className={Style.fHeadLine}>
-                        <Link href={'/'}>
-                            <a href="">
-                                RIKAAA.ORG
-                            </a>
-                        </Link>
-                    </h1>
+        <header
+            className={clsx(
+                Styles.fontColor_white, Styles.root
+            )}
+        >
+
+            <div
+                className={clsx(
+                    Styles.mw1440,
+                    Styles.absolute,
+                    Styles.container,
+                    Styles.w100
+                )}
+            >
+                <div className={clsx(
+                    Styles.inner_mg,
+                )}>
                     <div className={clsx(
-                        Style.btnRoot,
-                        {[Style.isOpen]: naviVisible}
+                        Styles.mw1440,
+                        Styles.flex,
+                        Styles.center,
+                        Styles.add_before,
+                        Styles.block
                     )}>
-                        <button onClick={handleClick}>
-                            <span></span>
-                            <span></span>
+                        <button
+                            className={clsx(
+                                Styles.fontBold,
+                                Styles.menuBtn,
+                                {[Styles.isOpen]: isMenuOpen}
+                            )}
+                            aria-label={'open menu'}
+                            onClick={() => {
+                                setIsMenuOpen(!isMenuOpen)
+                            }}
+                        >
                         </button>
                     </div>
                 </div>
-            </Container>
-            <Navi addSwiper={setSwiper} visibility={naviVisible} postList={postList} onClick={() => {
-                setNaviVisible(false)
-            }}/>
+            </div>
+            <Nav postIndexList={postIndexList} isShow={isMenuOpen}/>
         </header>
-    );
+    )
 }
 
-export default Header;
-
+export default Header

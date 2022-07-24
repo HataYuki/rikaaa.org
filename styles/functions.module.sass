@@ -1,0 +1,32 @@
+@use "sass:math"
+@import "variables.module"
+
+// mixin
+@mixin mediaQuery($min_width)
+  @media (min-width: $min_width * 1px)
+    @content
+
+@mixin small
+  @include mediaQuery($small)
+    @content
+
+@mixin medium
+  @include mediaQuery($medium)
+    @content
+
+@mixin big
+  @include mediaQuery($big)
+    @content
+
+@mixin large
+  @include mediaQuery($large)
+    @content
+
+
+// function
+@function genClamp($min, $max, $win_min, $win_max, $base_fs_size:16)
+  $minViewWidth: math.div($win_min, $base_fs_size)
+  $maxViewWidth: math.div($win_max, $base_fs_size)
+  $slope: math.div((math.div($max,$base_fs_size) - math.div($min,$base_fs_size)), ($maxViewWidth - $minViewWidth))
+  $yaxis: $minViewWidth * -1 * $slope + math.div($min,$base_fs_size)
+  @return clamp(#{$min}px, #{$yaxis * 1}rem + #{$slope * 100}vw, #{$max}px)

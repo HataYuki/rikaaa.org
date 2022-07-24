@@ -1,71 +1,26 @@
-@import "styles/foundation/font.module"
-@import "styles/foundation/variable"
-@import "styles/foundation/mixin"
+@import "styles/utility.module"
+@import "styles/variables.module"
+@import "styles/animation.module"
 
-.root
-  padding-top: 70px
-  @include lg
-    padding-top: 40px
-    > div
-      padding-bottom: 40px !important
+.footer
+  padding: 17px 0
 
-  h3
-    margin-bottom: 40px
-    @include lg
-      margin-bottom: 0.5em
-
-.content
-  display: flex
-  flex-grow: 1
-
-.leftCol,.rightCol
-  flex-grow: 2
-
-.leftCol
-  ul
-    @include lg
-      display: flex
-    li
-      margin-bottom: 1em
-      @include lg
-        margin-bottom: 0
-        a
-          border-right: 1px solid $black
-          padding-right: 10px
-          margin-right: 10px
-          &:hover
-            transition: opacity 100ms ease-out
-            opacity: 0.3
-        &:last-child
-          a
-            border-right: 0
-
-
-
-.rightCol
-  display: flex
-  flex-flow: column
-  align-items: flex-end
-  justify-content: flex-end
-  @include lg
-    flex-direction: row
-
-  > div
-    position: relative
-    width: 80px
-
-  div:first-child
-    height: 21.63px
-    margin-bottom: 30px
-    @include lg
+  &__title
+    font-size: 20px
+    margin-bottom: 1.618em
+    @include small
       margin-bottom: 0
-      margin-right: 30px
+      margin-right: 28px
 
-  div:last-child
-    height: 23.75px
-
-  a:hover
-    transition: opacity 100ms ease-out
-    opacity: 0.3
-
+  &__link
+    font-size: 13px
+    margin-bottom: 0.618em
+    cursor: pointer
+    &:last-child
+      margin-bottom: 0
+    @include small
+      margin-bottom: 0
+      margin-right: 17px
+      &:last-child
+        margin-right: 0
 

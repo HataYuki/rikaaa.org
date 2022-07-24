@@ -1,0 +1,25 @@
+@use "sass:math"
+@import "styles/functions.module"
+
+// font
+.fontBold
+  font-family: "Sharoa Pro DemiBold"
+  letter-spacing: math.div(90em, 1000)
+  line-height: math.div(33, 23)
+  //font-family: brandon-grotesque, sans-serif
+  //font-weight: 400
+  //font-style: normal
+
+.fontMedium
+  font-family: "Shin Go Light"
+  letter-spacing: math.div(250em, 1000)
+  line-height: math.div(33, 23)
+
+.fontLight
+  font-family: YakuHanJP, "Shin Go ExLight"
+  letter-spacing: math.div(20em, 1000)
+  line-height: math.div(20, 14)
+
+.headline_fs_size
+  font-size: genClamp(17, 28, 0, $small)
+

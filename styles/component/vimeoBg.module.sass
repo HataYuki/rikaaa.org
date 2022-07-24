@@ -1,0 +1,22 @@
+@use "sass:math"
+@import "styles/utility.module"
+@import "styles/variables.module"
+
+.vimeoBg
+  position: relative
+  @extend .add_after
+  iframe, &:after
+    position: absolute
+    @extend .wh100
+    top: 0
+    left: 0
+  iframe
+    z-index: 2
+  &:after
+    z-index: 3
+    background-color: rgba($black, 0.3)
+
+.thumbnail
+  z-index: 1
+
+

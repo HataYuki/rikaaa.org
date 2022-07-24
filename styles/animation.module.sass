@@ -1,0 +1,114 @@
+@import "variables.module"
+
+.anim
+  &__transition
+    &_transform
+      transition: transform $animDuration + ms $cubeBezier
+
+    &_color
+      transition: color $animDuration + ms $cubeBezier
+
+  &__zoomIn
+    transform: scale(1.1)
+
+  &_HoverZoom, &_hoverZoomOut
+    transition: transform $animDuration + ms $cubeBezier
+    transform: scale(1)
+
+    &:hover
+      transform: scale(0.87)
+
+  &_hoverZoomIn
+    transition: transform $animDuration + ms $cubeBezier
+    transform: scale(1)
+
+    &:hover
+      transform: scale(1.2)
+
+  &_HoverTurnBgBlack, &_hoverTurnBgBlack
+    transition: background-color $animDuration + ms $cubeBezier, color $animDuration + ms $cubeBezier
+
+    &:hover
+      background-color: $black
+      color: $white
+
+  &_hoverTurnBgWhite
+    transition: background-color $animDuration + ms $cubeBezier, color $animDuration + ms $cubeBezier
+
+    &:hover
+      background-color: $white
+      color: $blue
+
+  &_hoverTurnTextBlue
+    transition: color $animDuration + ms $cubeBezier
+
+    &:hover
+      color: $blue
+
+
+
+  &_fade
+    visibility: hidden
+    opacity: 0
+    transition-property: visibility, opacity
+    transition-duration: 300ms
+    transform-style: $cubeBezier
+    &.fadeIn,&.isAnimated
+      opacity: 1
+      visibility: visible
+    &.fadeOut
+      opacity: 0
+      visibility: hidden
+
+
+  &_fadeInLeft
+    transform: translateX(-60px)
+    mask-image: radial-gradient(circle at right center,black 40%,transparent 100%)
+    mask-position: 200% 100%
+    mask-size: 300% 100%
+    mask-repeat: no-repeat
+    transition: mask-position 1200ms $cubeBezier
+    &.isAnimated
+      animation: fadeFromLeft 1200ms $cubeBezier normal forwards
+      mask-position: 100% 100%
+
+
+  &_fadeInUp
+    transform: translateY(100px)
+    opacity: 0
+    visibility: hidden
+    transition-property: opacity,visibility
+    transition-duration: 1200ms
+    transition-timing-function: cubic-bezier(.15,.47,.38,.95)
+    &.isAnimated
+      animation: fadeInUp 1200ms cubic-bezier(.15,.47,.38,.95) normal forwards
+      visibility: visible
+      opacity: 1
+
+@keyframes fadeFromLeft
+  0%
+    visibility: hidden
+    opacity: 0
+    transform: translateX(-60px)
+  100%
+    visibility: visible
+    opacity: 1
+    transform: translateX(0)
+
+
+@keyframes fadeInUp
+  0%
+
+    transform: translateY(100px)
+  100%
+
+    transform: translateY(0)
+
+
+
+
+
+
+
+
+
