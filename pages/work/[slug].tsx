@@ -2,7 +2,7 @@ import type {NextPage, GetStaticPaths, GetStaticProps} from 'next'
 import {useState} from "react"
 import Styles from '/styles/pages/slug.module.sass'
 import {Swiper, SwiperSlide} from 'swiper/react'
-import SwiperCore, {Autoplay, EffectFade, Pagination} from 'swiper'
+import {Autoplay, EffectFade} from 'swiper'
 import Doc from "../../parts/layout/doc";
 import Image from 'next/image'
 import FadeIn from "../../parts/component/fadeIn";
@@ -49,8 +49,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 }
 
 const Slug: NextPage<Props> = ({post, postIndexList}) => {
-    SwiperCore.use([Autoplay, EffectFade, Pagination])
-
     const eyeCatch = post.eyeCatch;
     const [swiperBullet, setSwiperBullet] = useState<boolean[]>((eyeCatch && eyeCatch.length) ? eyeCatch.map(() => false) : [])
     const isDark = useIsDark()
@@ -146,6 +144,7 @@ const Slug: NextPage<Props> = ({post, postIndexList}) => {
                                     </div>
                                     <Swiper
                                         className={clsx(Styles.mb46)}
+                                        modules={[Autoplay,EffectFade]}
                                         spaceBetween={0}
                                         loop={true}
                                         speed={600}
@@ -168,6 +167,8 @@ const Slug: NextPage<Props> = ({post, postIndexList}) => {
                                                             <Image
                                                                 src={img}
                                                                 layout={'responsive'}
+                                                                loading={'eager'}
+                                                                priority={true}
                                                                 width={100}
                                                                 height={100}
                                                                 objectFit={'contain'}

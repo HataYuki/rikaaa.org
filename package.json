@@ -9,6 +9,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "analyze": "ANALYZE=true yarn build",
     "lint": "next lint"
   },
   "dependencies": {
@@ -28,15 +29,18 @@
     "react-intersection-observer": "^9.3.5",
     "simple-react-validator": "^1.6.1",
     "swiper": "^8.3.1",
-    "use-breakpoint": "^3.0.3"
+    "use-breakpoint": "^3.0.3",
+    "yakuhanjp": "^3.4.1"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^12.2.4",
     "@types/node": "18.0.6",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
     "@types/swiper": "^6.0.0",
     "eslint": "8.20.0",
     "eslint-config-next": "12.2.2",
+    "next-purgecss": "^4.0.0",
     "sass": "^1.53.0",
     "typescript": "4.7.4"
   }
