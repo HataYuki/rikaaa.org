@@ -17,7 +17,7 @@ export const useIsDark = () => {
         return (): void => {
             darkModeMediaQuery.removeEventListener('change',handleMatchMedia)
         }
-    }, [])
+    })
 
     return isDark
 }
