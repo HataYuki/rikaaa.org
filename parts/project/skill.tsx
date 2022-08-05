@@ -46,7 +46,7 @@ const Skill = () => {
         const result: Array<React.ReactNode> = []
         if (images[0]) {
             result.push(
-                <RoundImage
+                <RoundImage key={0}
                     className={clsx(
                         Styles.h100,
                         {[Styles.none]: (isDark && images.length !== 1)}
@@ -58,7 +58,7 @@ const Skill = () => {
         }
         if (images[1]) {
             result.push(
-                <RoundImage
+                <RoundImage key={1}
                     className={clsx(
                         Styles.h100,
                         {[Styles.none]: !isDark}
