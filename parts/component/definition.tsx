@@ -5,7 +5,7 @@ import {useBreakpoint} from "use-breakpoint";
 import LineText from "./lineText";
 import FadeIn from './fadeIn'
 import {GoLinkExternal} from 'react-icons/go'
-import SimpleReactValidator from 'simple-react-validator'
+import {isUrl} from "../../lib/utility";
 import {useIsDark} from "../../lib/useIsDark";
 
 
@@ -18,7 +18,7 @@ interface Props {
 }
 
 const Definition = ({children}: Props) => {
-    const validator = new SimpleReactValidator();
+    // const validator = new SimpleReactValidator();
     const {minWidth} = useBreakpoint(BREAKPOINTS, 'win_small')
     const isDark = useIsDark()
 
@@ -26,7 +26,7 @@ const Definition = ({children}: Props) => {
 
 
         return texts.map((text, i) => {
-            const isLink = validator.check(text, 'url')
+            const isLink = isUrl(text.toString())
 
             if (isLink) {
                 return (

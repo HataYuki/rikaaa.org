@@ -2,7 +2,6 @@ import type {NextPage, GetStaticProps} from 'next'
 import Styles from '/styles/pages/index.module.sass'
 import clsx from 'clsx'
 import Doc from "../parts/layout/doc";
-import CoverVimeo from "../parts/component/coverVimeo";
 import Btn from "../parts/component/btn";
 import useBreakpoint from 'use-breakpoint';
 import RoundImage from "../parts/component/roundImage"
@@ -54,7 +53,10 @@ const Index: NextPage<Props> = ({postIndexList}) => {
 
                         <FadeIn type={'fade'}>
                             <div className={clsx(Styles.mainVisual__video, Styles.absolute_autoCenter, Styles.br6)}>
-                                <CoverVimeo className={Styles.h100}/>
+                                <video className={clsx(Styles.wh100)} autoPlay={true} playsInline={true} loop={true} muted={true} controls={false}>
+                                    <source src={'/mainVisual.mp4'} type={'video/mp4'}/>
+                                    <source src={'/mainVisual.webm'} type={'video/webm'}/>
+                                </video>
                             </div>
                         </FadeIn>
 
