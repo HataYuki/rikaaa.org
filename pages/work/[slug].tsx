@@ -168,6 +168,8 @@ const Slug: NextPage<Props> = ({post, postIndexList}) => {
                                                             <Image
                                                                 src={img}
                                                                 layout={'responsive'}
+                                                                loading={'eager'}
+                                                                priority={true}
                                                                 width={100}
                                                                 height={100}
                                                                 objectFit={'contain'}
