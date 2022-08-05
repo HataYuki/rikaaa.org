@@ -1,7 +1,6 @@
 @import "styles/utility.module"
 @import "styles/font.module"
 @import "styles/functions.module"
-@import "styles/font.module"
 
 .headline
   height: 100vh
@@ -20,12 +19,8 @@
     margin: 0 auto
 
   &__title
-    color: darken($gray, 60)
     width: 50vw
     font-size: genClamp(25, 40, 375, $medium)
-
-  &__bar
-    background-color: darken($gray, 50)
 
   &__bulletList
     justify-content: center
@@ -34,22 +29,29 @@
     position: relative
     height: 1px
     width: 50px
-    background-color: darken($gray, 20)
     margin-right: 17px
     &:last-child
       margin-right: 0
-
     &:before
       content: ""
       position: absolute
       height: 100%
       width: 0%
-      background-color: $black
+    &.dark
+      background-color: darken($gray,50%)
+      &:before
+        background-color: $gray
+    &.light
+      background-color: darken($gray, 20%)
+      &:before
+        background-color: $black
+
 
   &__currentBullet
     &:before
       transition: width 3100ms linear
       width: 100%
+
 
 
 

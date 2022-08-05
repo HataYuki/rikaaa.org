@@ -13,6 +13,7 @@ import {BREAKPOINTS} from "../lib/breakpoints";
 import type {PostIndexList} from "../lib/posts";
 import {getPostIndexList} from "../lib/posts";
 import {GetStaticProps} from "next";
+import {useIsDark} from "../lib/useIsDark";
 
 interface Props {
     postIndexList: PostIndexList
@@ -30,6 +31,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
 const About_me: NextPage<Props> = ({postIndexList}: Props) => {
     const {minWidth} = useBreakpoint(BREAKPOINTS, 'win_small')
+    const isDark = useIsDark()
 
     return (
         <Doc postIndexList={postIndexList}>
@@ -43,7 +45,11 @@ const About_me: NextPage<Props> = ({postIndexList}: Props) => {
                             {[Styles.mb76]: !(minWidth >= BREAKPOINTS.win_small)}
                         )}>
                             <FadeIn type={'fadeUp'}>
-                                <Headline level={1} className={Styles.headline_fs_size}>
+                                <Headline
+                                    level={1}
+                                    className={Styles.headline_fs_size}
+                                    barStyle={clsx({[Styles.bgColor_white]:isDark})}
+                                >
                                     {{
                                         en: ('about me'),
                                         ja: ('わたしについて')
@@ -71,7 +77,13 @@ const About_me: NextPage<Props> = ({postIndexList}: Props) => {
                                             </div>
                                         ),
                                         left: (
-                                            <div className={clsx(Styles.aboutMe__profile, Styles.bgColor_gray)}>
+                                            <div
+                                                className={clsx(
+                                                    Styles.aboutMe__profile,
+                                                    {[Styles.bgColor_gray]:!isDark},
+                                                    {[Styles.bgColor_lightBlack]:isDark},
+                                                )}
+                                            >
                                                 <FadeIn type={'fade'}>
                                                     <h2 className={clsx(Styles.fontMedium, Styles.aboutMe__name, Styles.mb46)}>
                                                         畑雄樹
@@ -117,7 +129,11 @@ const About_me: NextPage<Props> = ({postIndexList}: Props) => {
                                     Styles.mb76,
                                 )}>
                                     <FadeIn type={'fadeUp'}>
-                                        <Headline level={1} className={Styles.headline_fs_size}>
+                                        <Headline
+                                            level={1}
+                                            className={Styles.headline_fs_size}
+                                            barStyle={clsx({[Styles.bgColor_white]:isDark})}
+                                        >
                                             {{
                                                 en: ('EDUCATIONAL'),
                                                 ja: ('学歴')
@@ -149,7 +165,11 @@ const About_me: NextPage<Props> = ({postIndexList}: Props) => {
                                     Styles.mb76,
                                 )}>
                                     <FadeIn type={'fadeUp'}>
-                                        <Headline level={1} className={Styles.headline_fs_size}>
+                                        <Headline
+                                            level={1}
+                                            className={Styles.headline_fs_size}
+                                            barStyle={clsx({[Styles.bgColor_white]:isDark})}
+                                        >
                                             {{
                                                 en: ('work'),
                                                 ja: ('職歴')
@@ -183,7 +203,11 @@ const About_me: NextPage<Props> = ({postIndexList}: Props) => {
                                     Styles.mb76,
                                 )}>
                                     <FadeIn type={'fadeUp'}>
-                                        <Headline level={1} className={Styles.headline_fs_size}>
+                                        <Headline
+                                            level={1}
+                                            className={Styles.headline_fs_size}
+                                            barStyle={clsx({[Styles.bgColor_white]:isDark})}
+                                        >
                                             {{
                                                 en: ('Award exhibition'),
                                                 ja: ('賞歴 / 展示歴')
@@ -223,7 +247,11 @@ const About_me: NextPage<Props> = ({postIndexList}: Props) => {
                             Styles.mb76,
                         )}>
                             <FadeIn type={'fadeUp'}>
-                                <Headline level={1} className={Styles.headline_fs_size}>
+                                <Headline
+                                    level={1}
+                                    className={Styles.headline_fs_size}
+                                    barStyle={clsx({[Styles.bgColor_white]:isDark})}
+                                >
                                     {{
                                         en: ('skill'),
                                         ja: ('できること')

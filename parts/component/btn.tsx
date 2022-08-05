@@ -2,6 +2,7 @@ import type {NextPage} from 'next'
 import Link from 'next/link'
 import Styles from '/styles/component/btn.module.sass'
 import clsx from 'clsx'
+import {useIsDark} from "../../lib/useIsDark";
 
 interface Props {
     className?: string
@@ -11,6 +12,8 @@ interface Props {
 }
 
 const Btn: NextPage<Props> = ({className, href, label, children}: Props) => {
+    const isDark = useIsDark()
+
     return (
         <Link href={href} scroll={false}>
             <a
@@ -21,12 +24,17 @@ const Btn: NextPage<Props> = ({className, href, label, children}: Props) => {
                     Styles.display_inlineBlock
                 )}>
                 <span className={clsx(
-                    Styles.link,
-                    Styles.bgColor_white,
-                    Styles.anim_HoverTurnBgBlack,
-                    Styles.pointerEventsNone,
                     Styles.w100,
-                    Styles.fontColor_black
+                    Styles.link,
+                    {[Styles.anim_hoverTurnBgBlack]:!isDark},
+                    {[Styles.anim_hoverTurnBgWhite]:isDark},
+                    Styles.pointerEventsNone,
+                    {[Styles.dark]:isDark},
+                    {[Styles.light]:!isDark},
+                    {[Styles.bgColor_white]:!isDark},
+                    {[Styles.bgColor_black]:isDark},
+                    {[Styles.fontColor_black]:!isDark},
+                    {[Styles.fontColor_white]:isDark},
                 )}>
                     <span
                         className={clsx(

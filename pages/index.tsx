@@ -16,6 +16,7 @@ import FadeIn from "../parts/component/fadeIn";
 import {BREAKPOINTS} from "../lib/breakpoints";
 import type {PostIndexList} from "../lib/posts";
 import {getPostIndexList} from "../lib/posts";
+import {useIsDark} from "../lib/useIsDark";
 
 interface Props {
     postIndexList: PostIndexList
@@ -35,10 +36,18 @@ const Index: NextPage<Props> = ({postIndexList}) => {
     const projectList4 = postIndexList.filter(post => post.projectType === 'client').filter((post, i) => i < 4)
     const projectList3 = postIndexList.filter(post => post.projectType === 'client').filter((post, i) => i < 3)
     const myProjectList = postIndexList.filter(post => post.projectType === 'self').filter((post, i) => i < 3)
+    const isDark = useIsDark()
 
     return (
         <Doc postIndexList={postIndexList}>
-            <section className={clsx(Styles.mainVisual, Styles.mb200)}>
+            <section
+                className={clsx(
+                    Styles.mainVisual,
+                    {[Styles.bgColor_gray]: !isDark},
+                    {[Styles.bgColor_lightBlack]: isDark},
+                    Styles.mb200
+                )}
+            >
                 <div className={clsx(Styles.mw1380, Styles.wh100)}>
                     <div className={clsx(Styles.relative, Styles.sideSpace_mg, Styles.h100)}>
 
@@ -91,7 +100,11 @@ const Index: NextPage<Props> = ({postIndexList}) => {
                 <div className={clsx(Styles.mw1380)}>
 
                     <FadeIn type={'fadeUp'}>
-                        <Headline level={2} className={clsx(Styles.headline_fs_size, Styles.mw300, Styles.mb123)}>
+                        <Headline
+                            level={2}
+                            className={clsx(Styles.headline_fs_size, Styles.mw300, Styles.mb123)}
+                            barStyle={clsx({[Styles.bgColor_white]:isDark})}
+                        >
                             {{
                                 en: ('project'),
                                 ja: ('したこと')
@@ -103,8 +116,14 @@ const Index: NextPage<Props> = ({postIndexList}) => {
                         className={clsx(Styles.sideSpace_mg, Styles.mb76, {[Styles.none]: !(minWidth >= BREAKPOINTS.win_small)})}>
                         <FadeIn type={'fade'} className={clsx(Styles.wh100)}>
 
-                            <Column className={clsx(Styles.firstWork, Styles.mb76, Styles.bgColor_gray)}
-                                    extendLeftH={true}>
+                            <Column
+                                className={clsx(
+                                    Styles.firstWork,
+                                    Styles.mb76,
+                                    {[Styles.bgColor_gray]:!isDark},
+                                    {[Styles.bgColor_lightBlack]:isDark}
+                                )}
+                                extendLeftH={true}>
                                 {{
                                     left: (
                                         <RoundImage
@@ -212,9 +231,21 @@ const Index: NextPage<Props> = ({postIndexList}) => {
 
             </section>
 
-            <section className={clsx(Styles.mb200, Styles.bgColor_gray, Styles.pb200, Styles.pt200)}>
+            <section
+                className={clsx(
+                    Styles.mb200,
+                    Styles.pb200,
+                    Styles.pt200,
+                    {[Styles.bgColor_gray]:!isDark},
+                    {[Styles.bgColor_lightBlack]:isDark},
+                )}
+            >
                 <FadeIn type={'fadeUp'}>
-                    <Headline level={2} className={clsx(Styles.mw300, Styles.mb123, Styles.headline_fs_size)}>
+                    <Headline
+                        level={2}
+                        className={clsx(Styles.mw300, Styles.mb123, Styles.headline_fs_size)}
+                        barStyle={clsx({[Styles.bgColor_white]:isDark})}
+                    >
                         {{
                             en: ('vision'),
                             ja: ('これまで・これから')
@@ -233,7 +264,17 @@ const Index: NextPage<Props> = ({postIndexList}) => {
                             <div
                                 className={clsx(Styles.visionItem, {[Styles.mb200]: !(minWidth >= BREAKPOINTS.win_small)})}>
                                 <FadeIn type={'fadeUp'}>
-                                    <h2 className={clsx(Styles.mb76, Styles.fontBold, Styles.text_center, Styles.visionTitle, Styles.mb128)}>
+                                    <h2
+                                        className={clsx(
+                                            Styles.mb76,
+                                            Styles.mb128,
+                                            Styles.fontBold,
+                                            Styles.text_center,
+                                            Styles.visionTitle,
+                                            {[Styles.fontColor_darkGray]:!isDark},
+                                            {[Styles.fontColor_gray]:isDark}
+                                        )}
+                                    >
                                         WHAT I <span className={clsx(Styles.fontColor_blue)}>DID</span>
                                     </h2>
                                     <div className={clsx(Styles.visionArticle)}>
@@ -253,7 +294,16 @@ const Index: NextPage<Props> = ({postIndexList}) => {
 
                             <div className={clsx(Styles.visionItem)}>
                                 <FadeIn type={'fadeUp'}>
-                                    <h2 className={clsx(Styles.mb76, Styles.fontBold, Styles.text_center, Styles.visionTitle, Styles.mb128)}>
+                                    <h2
+                                        className={clsx(
+                                            Styles.mb76,
+                                            Styles.mb128,
+                                            Styles.fontBold,
+                                            Styles.text_center,
+                                            Styles.visionTitle,
+                                            {[Styles.fontColor_darkGray]:!isDark},
+                                            {[Styles.fontColor_gray]:isDark}
+                                        )}>
                                         WHAT I <span className={clsx(Styles.fontColor_blue)}>DO</span>
                                     </h2>
                                     <div className={clsx(Styles.visionArticle)}>
@@ -279,7 +329,11 @@ const Index: NextPage<Props> = ({postIndexList}) => {
 
             <section className={clsx(Styles.mb200)}>
                 <FadeIn type={'fadeUp'}>
-                    <Headline level={2} className={clsx(Styles.mw300, Styles.mb123, Styles.headline_fs_size)}>
+                    <Headline
+                        level={2}
+                        className={clsx(Styles.mw300, Styles.mb123, Styles.headline_fs_size)}
+                        barStyle={clsx({[Styles.bgColor_white]:isDark})}
+                    >
                         {{
                             en: ('skill'),
                             ja: ('できること')
@@ -291,7 +345,11 @@ const Index: NextPage<Props> = ({postIndexList}) => {
 
             <section className={clsx(Styles.mb200)}>
                 <FadeIn type={'fadeUp'}>
-                    <Headline level={2} className={clsx(Styles.mw300, Styles.mb123, Styles.headline_fs_size)}>
+                    <Headline
+                        level={2}
+                        className={clsx(Styles.mw300, Styles.mb123, Styles.headline_fs_size)}
+                        barStyle={clsx({[Styles.bgColor_white]:isDark})}
+                    >
                         {{
                             en: ('my project'),
                             ja: ('つくったもの')
@@ -357,9 +415,19 @@ const Index: NextPage<Props> = ({postIndexList}) => {
             </section>
 
 
-            <section className={clsx(Styles.pb200, Styles.pt200, Styles.bgColor_gray)}>
+            <section
+                className={clsx(
+                    Styles.pb200,
+                    Styles.pt200,
+                    {[Styles.bgColor_gray]:!isDark},
+                    {[Styles.bgColor_lightBlack]:isDark},
+                )}>
                 <FadeIn type={'fadeUp'}>
-                    <Headline level={2} className={clsx(Styles.mw300, Styles.mb123, Styles.headline_fs_size)}>
+                    <Headline
+                        level={2}
+                        className={clsx(Styles.mw300, Styles.mb123, Styles.headline_fs_size)}
+                        barStyle={clsx({[Styles.bgColor_white]:isDark})}
+                    >
                         {{
                             en: ('link'),
                             ja: ('そのほか')

@@ -13,6 +13,7 @@ import Headline from "../../parts/component/headline";
 import LineText from "../../parts/component/lineText";
 import LazyLoadVideo from "../../parts/component/lazyLoadVideo";
 import Definition from "../../parts/component/definition";
+import {useIsDark} from "../../lib/useIsDark";
 
 interface Props {
     post: Post
@@ -52,6 +53,7 @@ const Slug: NextPage<Props> = ({post, postIndexList}) => {
 
     const eyeCatch = post.eyeCatch;
     const [swiperBullet, setSwiperBullet] = useState<boolean[]>((eyeCatch && eyeCatch.length) ? eyeCatch.map(() => false) : [])
+    const isDark = useIsDark()
 
     const env = () => {
         if (post.environment.length > 1) {
@@ -61,7 +63,9 @@ const Slug: NextPage<Props> = ({post, postIndexList}) => {
                         <div className={clsx(Styles.sideSpace_mg)}>
                             <FadeIn type={'fadeUp'}>
                                 <Headline level={2}
-                                          className={clsx(Styles.mw300, Styles.mb123, Styles.headline_fs_size)}>
+                                          className={clsx(Styles.mw300, Styles.mb123, Styles.headline_fs_size)}
+                                          barStyle={clsx({[Styles.bgColor_white]:isDark})}
+                                >
                                     {{
                                         en: ('environment'),
                                         ja: ('つかったもの')
@@ -74,7 +78,13 @@ const Slug: NextPage<Props> = ({post, postIndexList}) => {
                                     {
                                         post.environment.map((item, i) => {
                                             return (
-                                                <li className={clsx(Styles.mb17, Styles.env__item, Styles.bgColor_gray)}
+                                                <li
+                                                    className={clsx(
+                                                        Styles.mb17,
+                                                        Styles.env__item,
+                                                        {[Styles.bgColor_gray]:!isDark},
+                                                        {[Styles.bgColor_lightBlack]:isDark},
+                                                    )}
                                                     key={i}>
                                                     {
                                                         item
@@ -95,7 +105,14 @@ const Slug: NextPage<Props> = ({post, postIndexList}) => {
 
     return (
         <Doc postIndexList={postIndexList}>
-            <section className={clsx(Styles.bgColor_gray, Styles.mb200, Styles.headline)}>
+            <section
+                className={clsx(
+                    Styles.mb200,
+                    Styles.headline,
+                    {[Styles.bgColor_gray]: !isDark},
+                    {[Styles.bgColor_lightBlack]: isDark},
+                )}
+            >
                 <FadeIn type={'fadeUp'} className={clsx(Styles.h100)}>
                     <div className={clsx(Styles.mw1380, Styles.h100)}>
                         <div className={clsx(Styles.sideSpace_mg, Styles.h100)}>
@@ -116,7 +133,9 @@ const Slug: NextPage<Props> = ({post, postIndexList}) => {
                                                         key={i}
                                                         className={clsx(
                                                             Styles.headline__bullet,
-                                                            {[Styles.headline__currentBullet]: bool}
+                                                            {[Styles.headline__currentBullet]: bool},
+                                                            {[Styles.dark]: isDark},
+                                                            {[Styles.light]: !isDark},
                                                         )}
                                                     >
 
@@ -160,8 +179,15 @@ const Slug: NextPage<Props> = ({post, postIndexList}) => {
                                         }
                                     </Swiper>
 
-                                    <Headline barStyle={Styles.headline__bar} level={1}
-                                              className={clsx(Styles.absolute_centerAuto, Styles.headline__title)}>
+                                    <Headline
+                                        level={1}
+                                        className={clsx(
+                                            Styles.headline__title,
+                                            Styles.absolute_centerAuto,
+                                            {[Styles.fontColor_darkGray]: !isDark},
+                                        )}
+                                        barStyle={clsx({[Styles.bgColor_white]: isDark})}
+                                    >
                                         {{
                                             en: (post.headLine.en),
                                             ja: (post.headLine.ja)
@@ -185,7 +211,10 @@ const Slug: NextPage<Props> = ({post, postIndexList}) => {
                                     Styles.fontMedium,
                                     Styles.copy__text
                                 )}
-                                barStyle={Styles.bgColor_black}>
+                                barStyle={clsx(
+                                    {[Styles.bgColor_black]: !isDark},
+                                    {[Styles.bgColor_white]: isDark},
+                                )}>
                                 {
                                     post.description.copy
                                 }
@@ -223,8 +252,15 @@ const Slug: NextPage<Props> = ({post, postIndexList}) => {
                                 post.media.map((media, i) => {
                                     if (media.image) {
                                         return (
-                                            <div className={clsx(Styles.media, Styles.mb17, Styles.bgColor_gray)}
-                                                 key={i}>
+                                            <div
+                                                className={clsx(
+                                                    Styles.media,
+                                                    Styles.mb17,
+                                                    {[Styles.bgColor_gray]: !isDark},
+                                                    {[Styles.bgColor_lightBlack]: isDark},
+                                                )}
+                                                key={i}
+                                            >
                                                 <div
                                                     className={clsx(Styles.sideSpace_pd, Styles.media__container, Styles.pt17, Styles.pb17)}>
                                                     <Image
@@ -240,8 +276,15 @@ const Slug: NextPage<Props> = ({post, postIndexList}) => {
                                     }
                                     if (media.video.length) {
                                         return (
-                                            <div className={clsx(Styles.media, Styles.mb17, Styles.bgColor_gray)}
-                                                 key={i}>
+                                            <div
+                                                className={clsx(
+                                                    Styles.media,
+                                                    Styles.mb17,
+                                                    {[Styles.bgColor_gray]: !isDark},
+                                                    {[Styles.bgColor_lightBlack]: isDark},
+                                                )}
+                                                key={i}
+                                            >
                                                 <div
                                                     className={clsx(Styles.sideSpace_pd, Styles.media__container, Styles.pt17, Styles.pb17)}>
                                                     <LazyLoadVideo
