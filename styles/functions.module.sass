@@ -22,6 +22,10 @@
   @include mediaQuery($large)
     @content
 
+@mixin darkMode
+  @media (prefers-color-scheme: dark)
+    @content
+
 
 // function
 @function genClamp($min, $max, $win_min, $win_max, $base_fs_size:16)
