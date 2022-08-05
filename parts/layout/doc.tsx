@@ -1,4 +1,3 @@
-import {motion} from "framer-motion";
 import Head from 'next/head'
 import Script from 'next/script'
 import React, {useEffect} from 'react'
@@ -51,24 +50,9 @@ const Doc = ({children, postIndexList}: Props) => {
             <Header postIndexList={postIndexList}/>
             <article>
                 <main>
-                    <motion.div
-                        variants={{
-                            hidden: {opacity: 0, x: 0, y: -50},
-                            enter: {opacity: 1, x: 0, y: 0},
-                            exit: {opacity: 0, x: 0, y: -50},
-                        }}
-                        initial={'hidden'}
-                        animate={'enter'}
-                        exit={'exit'}
-                        transition={{
-                            duration: 0.6,
-                            ease: [0, 1.03, .8, .99]
-                        }}
-                    >
-                        {
-                            children
-                        }
-                    </motion.div>
+                    {
+                        children
+                    }
                 </main>
             </article>
             <Footer/>

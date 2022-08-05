@@ -1,20 +1,14 @@
 import type {AppProps} from 'next/app'
 import {useEffect} from 'react'
-import {AnimatePresence} from "framer-motion";
 import Router from "next/router";
 import 'destyle.css/destyle.css'
 import '../styles/base.sass'
 import '/node_modules/swiper/swiper-bundle.min.css'
 
 
-function MyApp({Component, pageProps, router}: AppProps) {
+function MyApp({Component, pageProps}: AppProps) {
 
-    const tempFix = () => {
-        const allStyleElems = document.querySelectorAll('style[media="x"]');
-        allStyleElems.forEach((elem) => {
-            elem.removeAttribute("media");
-        });
-    };
+    const tempFix = () => window.scrollTo(0,0);
 
 
     useEffect(() => {
@@ -27,9 +21,7 @@ function MyApp({Component, pageProps, router}: AppProps) {
     })
 
     return (
-        <AnimatePresence exitBeforeEnter onExitComplete={() => window.scrollTo(0, 0)}>
-            <Component key={router.asPath} {...pageProps} />
-        </AnimatePresence>
+        <Component {...pageProps} />
     )
 }
 
