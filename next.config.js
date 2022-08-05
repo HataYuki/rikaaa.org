@@ -35,7 +35,20 @@ const nextConfig = {
         safelist: ["html", "body"]
       }
     ],
-  ]
+  ],
+  async headers() {
+    return [
+      {
+        source: "/fonts/NotoSansJP-Thin.otf",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+    ];
+  },
 }
 
 module.exports = withBundleAnalyzer(nextConfig)
