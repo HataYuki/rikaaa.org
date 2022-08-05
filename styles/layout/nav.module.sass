@@ -18,7 +18,6 @@
     display: grid
     grid-template-rows: 1fr 0.1fr
     grid-template-columns: 1fr 1.6fr
-    color: darken($gray, 50)
 
   &__mainIndex
     grid-row: 1 / 2
@@ -53,7 +52,6 @@
       content: ""
       display: inline-block
       transition: all 300ms $cubeBezier
-      background-color: lighten($black,20)
 
   &__selected
 
@@ -61,6 +59,13 @@
       width: 10px
       height: 10px
       margin-right: 17px
+
+    &.dark
+      &:before
+        background-color: $darkGray
+    &.light
+      &:before
+        background-color: $darkGray
 
 
   &__hover

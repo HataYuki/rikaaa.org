@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
 import type {PostIndexList} from "../../lib/posts";
+import {useIsDark} from "../../lib/useIsDark";
 
 interface Props {
     isShow: boolean,
@@ -17,45 +18,36 @@ const Nav = ({isShow, postIndexList}: Props) => {
     const router = useRouter()
     const [category, setCategory] = useState('client')
     const index = postIndexList.filter(post => post.projectType === category)
-    const [preview, setPreview] = useState('')
-
-    const showImage = () => {
-        if (preview) {
-            return (
-                <Image
-                    src={preview}
-                    layout={'fill'}
-                    objectFit={'cover'}
-                />
-            )
-        }
-    }
-
-
-
-
-    // useEffect(() => {
-    //     setPreview(index[0].eyeCatch[0])
-    // }, [category])
+    const isDark = useIsDark()
 
     return (
         <nav
             className={clsx(
                 Styles.nav,
-                Styles.bgColor_gray,
+                {[Styles.bgColor_gray]: !isDark},
+                {[Styles.bgColor_lightBlack]: isDark},
                 {[Styles.fadeIn]: isShow},
                 {[Styles.fadeOut]: !isShow},
                 Styles.anim_fade
             )}
         >
             <div className={clsx(Styles.sideSpace_mg, Styles.h100, Styles.fontBold)}>
-                <div className={clsx(Styles.nav__grid, Styles.wh100)}>
+                <div
+                    className={clsx(
+                        Styles.nav__grid,
+                        Styles.wh100,
+                        {[Styles.fontColor_darkGray]: !isDark},
+                        {[Styles.fontColor_gray]: isDark},
+                    )}
+                >
                     <div className={clsx(Styles.nav__mainIndex)}>
                         <ul>
                             <li
                                 className={clsx(
                                     Styles.mb17,
                                     Styles.nav__item,
+                                    {[Styles.dark]: isDark},
+                                    {[Styles.light]: !isDark},
                                     Styles.anim_hoverTurnTextBlue,
                                     {[Styles.nav__selected]: category === 'client'},
                                 )}
@@ -68,6 +60,8 @@ const Nav = ({isShow, postIndexList}: Props) => {
                                 className={clsx(
                                     Styles.mb17,
                                     Styles.nav__item,
+                                    {[Styles.dark]: isDark},
+                                    {[Styles.light]: !isDark},
                                     Styles.anim_hoverTurnTextBlue,
                                     {[Styles.nav__selected]: category === 'self'},
                                 )}
@@ -126,7 +120,6 @@ const Nav = ({isShow, postIndexList}: Props) => {
                                         )}
                                         href=""
                                         aria-label={`link to index page`}
-                                        onMouseEnter={() => setPreview('')}
                                     >
                                         INDEX
                                     </a>
@@ -138,7 +131,7 @@ const Nav = ({isShow, postIndexList}: Props) => {
                                         const currentPath = router.asPath
                                         const link = `/work/${post.slug}`
 
-                                        if(currentPath !== link){
+                                        if (currentPath !== link) {
                                             return (
                                                 <Link
                                                     key={i}
@@ -154,7 +147,6 @@ const Nav = ({isShow, postIndexList}: Props) => {
                                                         )}
                                                         href=""
                                                         aria-label={`link to ${post.headLine.en} page`}
-                                                        onMouseEnter={() => setPreview(post.eyeCatch[0])}
                                                     >
                                                         {
                                                             post.headLine.en.toUpperCase()
@@ -168,14 +160,12 @@ const Nav = ({isShow, postIndexList}: Props) => {
                             </li>
                         </ul>
                     </div>
-                    {/*<div className={clsx(Styles.nav__preview, Styles.pb17)}>*/}
-                    {/*    <div className={clsx(Styles.nav__previewImg, Styles.relative, Styles.h100)}>*/}
-                    {/*        {*/}
-                    {/*            showImage()*/}
-                    {/*        }*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
-                    <div className={clsx(Styles.nav__bottom, Styles.fontColor_black, Styles.flex)}>
+                    <div
+                        className={clsx(
+                            Styles.nav__bottom,
+                            {[Styles.fontColor_black]:!isDark},
+                            Styles.flex)}
+                    >
                         <Links/>
                     </div>
                 </div>

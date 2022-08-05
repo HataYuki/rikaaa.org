@@ -10,6 +10,7 @@
 .display
   &_block
     display: block
+
   &_inlineBlock
     display: inline-block
 
@@ -153,6 +154,12 @@
   &_gray
     background-color: $gray
 
+  &_lightBlack
+    background-color: $lightBlack
+
+  &_darkBlack
+    background-color: $darkBlack
+
 .fontColor
   &_black
     color: $black
@@ -162,6 +169,9 @@
 
   &_gray
     color: $gray
+
+  &_darkGray
+    color: $darkGray
 
   &_blue
     color: $blue
@@ -173,15 +183,16 @@
   &.center
     align-items: center
     justify-content: space-between
+
   &_center
     display: flex
     align-items: center
     justify-content: space-between
+
     &_bottom
       display: flex
       align-items: flex-end
       justify-content: space-between
-
 
 
   &_gRow2
@@ -196,6 +207,7 @@
 
   &.col2
     flex-wrap: wrap
+
     > *
       width: 50%
 
@@ -278,6 +290,7 @@
 
 .top0
   top: 0
+
 .left0
   left: 0
 

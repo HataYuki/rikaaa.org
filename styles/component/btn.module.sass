@@ -9,8 +9,14 @@
   position: relative
   min-width: 123px
   height: 46px
-  border: 1.2px solid $black
   text-align: left
+  border-width: 1.2px
+  border-style: solid
+  &.light
+    border-color:  $black
+  &.dark
+    border-color:  $white
+
 
 .wrapper
   position: absolute

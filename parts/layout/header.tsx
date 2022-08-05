@@ -4,6 +4,7 @@ import Nav from "./nav";
 import Styles from '/styles/layout/header.module.sass'
 import clsx from 'clsx'
 import type {PostIndexList} from "../../lib/posts";
+import {useIsDark} from "../../lib/useIsDark";
 
 interface Props {
     postIndexList: PostIndexList
@@ -12,6 +13,7 @@ interface Props {
 const Header = ({postIndexList}: Props) => {
     const router = useRouter()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const isDark = useIsDark()
 
     const handleChangeStart = () => {
         setIsMenuOpen(false)
@@ -29,7 +31,9 @@ const Header = ({postIndexList}: Props) => {
     return (
         <header
             className={clsx(
-                Styles.fontColor_white, Styles.root
+                Styles.root,
+                {[Styles.dark]:isDark},
+                {[Styles.light]:!isDark},
             )}
         >
 
@@ -55,7 +59,9 @@ const Header = ({postIndexList}: Props) => {
                             className={clsx(
                                 Styles.fontBold,
                                 Styles.menuBtn,
-                                {[Styles.isOpen]: isMenuOpen}
+                                {[Styles.isOpen]: isMenuOpen},
+                                {[Styles.dark]:isDark},
+                                {[Styles.light]:!isDark},
                             )}
                             aria-label={'open menu'}
                             onClick={() => {
