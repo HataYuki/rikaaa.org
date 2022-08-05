@@ -1,10 +1,11 @@
 import {motion} from "framer-motion";
 import Head from 'next/head'
 import Script from 'next/script'
-import React from 'react'
+import React, {useEffect} from 'react'
 import Header from "./header";
 import Footer from "./footer";
 import type {PostIndexList} from "../../lib/posts";
+import {useIsDark} from "../../lib/useIsDark";
 
 interface Props {
     children: React.ReactNode
@@ -13,14 +14,29 @@ interface Props {
 
 
 const Doc = ({children, postIndexList}: Props) => {
+    const isDark = useIsDark()
+    const addBodyClass = (className: string) => document.body.classList.add(className)
+    const removeBodyClass = (className: string) => document.body.classList.remove(className)
+
+    useEffect(() => {
+        if(isDark){
+            removeBodyClass('light')
+            addBodyClass('dark')
+        }else{
+            removeBodyClass('dark')
+            addBodyClass('light')
+        }
+    })
+
     return (
         <>
             <Head>
                 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={""} />
-                <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet" />
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/yakuhanjp@3.4.1/dist/css/yakuhanjp.min.css" />
+                <link rel="preconnect" href="https://fonts.googleapis.com"/>
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={""}/>
+                <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap"
+                      rel="stylesheet"/>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/yakuhanjp@3.4.1/dist/css/yakuhanjp.min.css"/>
                 <title>rikaaa.org</title>
             </Head>
             <Script

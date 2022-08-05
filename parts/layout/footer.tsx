@@ -4,6 +4,7 @@ import Links from "../project/links";
 import clsx from 'clsx'
 import variables from '/styles/variables.module.sass'
 import {useBreakpoint} from "use-breakpoint";
+import {useIsDark} from "../../lib/useIsDark";
 
 const BREAKPOINTS: any = {}
 
@@ -13,12 +14,14 @@ for (const [key, value] of Object.entries(variables)) {
 
 const Footer = () => {
     const {minWidth} = useBreakpoint(BREAKPOINTS, 'win_small')
+    const isDark = useIsDark()
 
     return (
         <footer
             className={clsx(
                 Styles.footer,
-                Styles.bgColor_black,
+                {[Styles.bgColor_black]:!isDark},
+                {[Styles.bgColor_darkBlack]:isDark},
                 Styles.fontColor_white,
             )}>
             <div className={clsx(Styles.mw1440)}>

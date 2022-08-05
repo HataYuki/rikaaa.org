@@ -6,6 +6,7 @@ import LineText from "./lineText";
 import FadeIn from './fadeIn'
 import {GoLinkExternal} from 'react-icons/go'
 import SimpleReactValidator from 'simple-react-validator'
+import {useIsDark} from "../../lib/useIsDark";
 
 
 interface Items {
@@ -19,6 +20,7 @@ interface Props {
 const Definition = ({children}: Props) => {
     const validator = new SimpleReactValidator();
     const {minWidth} = useBreakpoint(BREAKPOINTS, 'win_small')
+    const isDark = useIsDark()
 
     const description = (texts: Array<string | number>) => {
 
@@ -70,10 +72,11 @@ const Definition = ({children}: Props) => {
                         <li
                             key={i}
                             className={clsx(
-                                {[Styles.text_center]: !(minWidth >= BREAKPOINTS.win_medium)},
-
+                                Styles.definitions__item,
                                 Styles.mb76,
-                                Styles.definitions__item
+                                {[Styles.text_center]: !(minWidth >= BREAKPOINTS.win_medium)},
+                                {[Styles.fontColor_darkGray]:!isDark},
+                                {[Styles.fontColor_gray]:isDark},
                             )}
                         >
                             <FadeIn type={'fadeUp'} className={Styles.w100}>
