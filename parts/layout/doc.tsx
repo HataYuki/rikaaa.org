@@ -43,7 +43,7 @@ const Doc = ({children, postIndexList}: Props) => {
                 src="//typesquare.com/3/tsst/script/ja/typesquare.js?62a9709b11cc48549c2a5d10ac1e02e5&onload=true&fadein=-1"
                 charSet="utf-8"
                 async={true}
-                strategy={'lazyOnload'}
+                strategy={'beforeInteractive'}
             >
             </Script>
             <Header postIndexList={postIndexList}/>
