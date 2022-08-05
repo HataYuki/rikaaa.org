@@ -1,6 +1,7 @@
 import type {AppProps} from 'next/app'
 import {useEffect} from 'react'
 import Router from "next/router";
+import 'yakuhanjp'
 import 'destyle.css/destyle.css'
 import '../styles/base.sass'
 import '/node_modules/swiper/swiper-bundle.min.css'
