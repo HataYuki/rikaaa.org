@@ -4,8 +4,8 @@ import 'firebase/storage'
 import flameLink from 'flamelink/app'
 import 'flamelink/cf/content'
 import 'flamelink/cf/storage'
-import firebaseConfig from 'firebaseConfig'
-const serviceAccount = require('serviceAccountKey.js')
+import firebaseConfig from '../firebaseConfig'
+const serviceAccount = require('../serviceAccountKey.js')
 
 let firebaseApp;
 if (!admin.apps.length) {

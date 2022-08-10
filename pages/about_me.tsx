@@ -10,31 +10,15 @@ import {useBreakpoint} from "use-breakpoint";
 import Definition from "../parts/component/definition";
 import Skill from "../parts/project/skill";
 import {BREAKPOINTS} from "../lib/breakpoints";
-import type {PostIndexList} from "../lib/posts";
-import {getPostIndexList} from "../lib/posts";
-import {GetStaticProps} from "next";
 import {useIsDark} from "../lib/useIsDark";
 
-interface Props {
-    postIndexList: PostIndexList
-}
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
-    const postIndexList = await getPostIndexList();
-    return {
-        props: {
-            postIndexList
-        }
-    }
-}
-
-
-const About_me: NextPage<Props> = ({postIndexList}: Props) => {
+const About_me: NextPage = () => {
     const {minWidth} = useBreakpoint(BREAKPOINTS, 'win_small')
     const isDark = useIsDark()
 
     return (
-        <Doc postIndexList={postIndexList}>
+        <Doc>
             <div className={clsx(Styles.ptHeader)}>
                 <div className={clsx(Styles.pt76)}>
 

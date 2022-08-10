@@ -3,16 +3,14 @@ import Script from 'next/script'
 import React, {useEffect} from 'react'
 import Header from "./header";
 import Footer from "./footer";
-import type {PostIndexList} from "../../lib/posts";
 import {useIsDark} from "../../lib/useIsDark";
 
 interface Props {
     children: React.ReactNode
-    postIndexList: PostIndexList
 }
 
 
-const Doc = ({children, postIndexList}: Props) => {
+const Doc = ({children}: Props) => {
     const isDark = useIsDark()
     const addBodyClass = (className: string) => document.body.classList.add(className)
     const removeBodyClass = (className: string) => document.body.classList.remove(className)
@@ -46,7 +44,7 @@ const Doc = ({children, postIndexList}: Props) => {
                 strategy={'afterInteractive'}
             >
             </Script>
-            <Header postIndexList={postIndexList}/>
+            <Header />
             <article>
                 <main>
                     {
