@@ -7,8 +7,8 @@
   ],
   "scripts": {
     "prepare": "webpack && node prepare.js",
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "yarn prepare && next dev",
+    "build": "yarn prepare && next build",
     "start": "next start",
     "analyze": "ANALYZE=true yarn build",
     "lint": "next lint"

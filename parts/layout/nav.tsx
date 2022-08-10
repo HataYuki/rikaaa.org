@@ -1,20 +1,19 @@
 import Styles from '/styles/layout/nav.module.sass'
 import {useRouter} from "next/router";
-import {useState} from "react"
+import {useState,useContext} from "react"
 import Links from '../project/links'
-import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
-import type {PostIndexList} from "../../lib/posts";
 import {useIsDark} from "../../lib/useIsDark";
+import {AppContext} from "../../pages/_app";
 
 interface Props {
     isShow: boolean,
-    postIndexList: PostIndexList
 }
 
 
-const Nav = ({isShow, postIndexList}: Props) => {
+const Nav = ({isShow}: Props) => {
+    const {postIndexList} = useContext(AppContext)
     const router = useRouter()
     const [category, setCategory] = useState('client')
     const index = postIndexList.filter(post => post.projectType === category)

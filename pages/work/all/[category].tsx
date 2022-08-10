@@ -1,5 +1,4 @@
 import type {NextPage, GetStaticPaths, GetStaticProps} from 'next'
-import {getPostIndexList} from "lib/posts";
 import type {PostIndexList} from "lib/posts";
 import Doc from "../../../parts/layout/doc";
 import FadeIn from "../../../parts/component/fadeIn";
@@ -8,10 +7,10 @@ import clsx from 'clsx'
 import Thumbnail from "../../../parts/component/thumbnail";
 import {BREAKPOINTS} from "../../../lib/breakpoints";
 import {useBreakpoint} from "use-breakpoint";
+import data from 'data.json'
 
 interface Props {
     thisCategoryIndexList: PostIndexList
-    postIndexList: PostIndexList
 }
 
 
@@ -23,7 +22,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
+    const postIndexList = data
     const category = (context.params && context.params.category) ? context.params.category : ''
+
     let type: string = '';
     if (category === 'project') {
         type = 'client'
@@ -31,21 +32,19 @@ export const getStaticProps: GetStaticProps = async (context) => {
     if (category === 'my_project') {
         type = 'self'
     }
-    const postIndexList = await getPostIndexList()
     return {
         props: {
             thisCategoryIndexList: postIndexList.filter(post => post.projectType === type),
-            postIndexList: postIndexList
         }
     }
 }
 
-const Category: NextPage<Props> = ({thisCategoryIndexList,postIndexList}) => {
+const Category: NextPage<Props> = ({thisCategoryIndexList}) => {
 
     const {minWidth} = useBreakpoint(BREAKPOINTS, 'win_small')
 
     return (
-        <Doc postIndexList={postIndexList}>
+        <Doc>
             <section className={clsx(Styles.mb200, Styles.ptHeader)}>
                 <div className={clsx(Styles.mw1380)}>
                     <div className={clsx(Styles.sideSpace_mg)}>
