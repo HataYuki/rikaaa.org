@@ -19,7 +19,9 @@
     margin: 0 auto
 
   &__title
-    width: 50vw
+    width: 80vw
+    @include small
+      width: 50vw
     font-size: genClamp(25, 40, 375, $medium)
 
   &__bulletList
