@@ -37,5 +37,9 @@ yarn-error.log*
 # .env(firebase params)
 .env
 
+# other
+prepare.js
+data.json
+
 # phpStorm
 .idea/*
