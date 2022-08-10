@@ -33,8 +33,8 @@ const Doc = ({children}: Props) => {
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={""}/>
                 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;700&display=swap"
                       rel="stylesheet"/>
-                <link rel={'preconnect'} href={'https://use.typekit.net/'}/>
-                <link rel="stylesheet" href="https://use.typekit.net/lpe1hvk.css" />
+                <link rel={'preload'} as={'font'} href={'/fonts/ABCMonumentGrotesk-Bold-Trial.woff2'} />
+                <link rel={'preload'} as={'font'} href={'/fonts/ABCMonumentGrotesk-Light-Trial.woff2'} />
                 <title>rikaaa.org</title>
             </Head>
             <Header />
