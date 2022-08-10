@@ -31,19 +31,14 @@ const Doc = ({children}: Props) => {
                 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={""}/>
-                <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap"
+                <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;700&display=swap"
                       rel="stylesheet"/>
+                <link rel={'preload'} as={'font'} href={'/fonts/ABCMonumentGrotesk-Bold-Trial.woff2'} />
+                <link rel={'preload'} as={'font'} href={'/fonts/ABCMonumentGrotesk-Bold-Trial.woff'} />
+                <link rel={'preload'} as={'font'} href={'/fonts/ABCMonumentGrotesk-Light-Trial.woff2'} />
+                <link rel={'preload'} as={'font'} href={'/fonts/ABCMonumentGrotesk-Light-Trial.woff'} />
                 <title>rikaaa.org</title>
             </Head>
-            <Script
-                id="typesquare"
-                type="text/javascript"
-                src="//typesquare.com/3/tsst/script/ja/typesquare.js?62a9709b11cc48549c2a5d10ac1e02e5&onload=true&fadein=-1"
-                charSet="utf-8"
-                async={true}
-                strategy={'afterInteractive'}
-            >
-            </Script>
             <Header />
             <article>
                 <main>
