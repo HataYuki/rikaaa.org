@@ -43,8 +43,8 @@ const Index: NextPage = () => {
                             <div className={clsx(Styles.mainVisual__video, Styles.absolute_autoCenter, Styles.br6)}>
                                 <video className={clsx(Styles.wh100)} autoPlay={true} playsInline={true} loop={true}
                                        muted={true} controls={false}>
-                                    <source src={'/mainVisual.mp4'} type={'video/mp4'}/>
                                     <source src={'/mainVisual.webm'} type={'video/webm'}/>
+                                    <source src={'/mainVisual.mp4'} type={'video/mp4'}/>
                                 </video>
                             </div>
                         </FadeIn>
