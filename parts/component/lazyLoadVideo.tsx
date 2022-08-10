@@ -30,8 +30,8 @@ const LazyLoadVideo = ({className,srcList}: Props) => {
                     playsInline={true}
                     loop={true}
                 >
-                    <source src={mp4Url} type={'video/mp4'}/>
                     <source src={webMUrl} type={'video/webm'}/>
+                    <source src={mp4Url} type={'video/mp4'}/>
                 </video>
             )
         }
