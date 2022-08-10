@@ -1,30 +1,22 @@
 @use "sass:math"
 @import "styles/functions.module"
 
-@font-face
-  font-family: "MonumentGrotesk Bold"
-  src: url("/fonts/ABCMonumentGrotesk-Bold-Trial.woff2") format('woff2')
-
-@font-face
-  font-family: "MonumentGrotesk light"
-  src: url("/fonts/ABCMonumentGrotesk-Light-Trial.woff2") format('woff2')
-
 // font
 .fontBold
-  font-family: "MonumentGrotesk Bold", "Noto Sans JP", sans-serif
+  font-family: brandon-grotesque, "Noto Sans JP", sans-serif
   font-weight: 700
   font-feature-settings: 'ss01'
   letter-spacing: math.div(90em, 1000)
   line-height: math.div(33, 23)
 
 .fontMedium
-  font-family: "MonumentGrotesk light", "Noto Sans JP", sans-serif
+  font-family: brandon-grotesque, "Noto Sans JP", sans-serif
   font-weight: 100
   letter-spacing: math.div(250em, 1000)
   line-height: math.div(33, 23)
 
 .fontLight
-  font-family: YakuHanJP, "MonumentGrotesk light", "Noto Sans JP", sans-serif
+  font-family: YakuHanJP, brandon-grotesque, "Noto Sans JP", sans-serif
   font-weight: 100
   letter-spacing: math.div(20em, 1000)
   line-height: math.div(20, 14)

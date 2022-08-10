@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Script from 'next/script'
 import React, {useEffect} from 'react'
 import Header from "./header";
 import Footer from "./footer";
@@ -31,10 +30,10 @@ const Doc = ({children}: Props) => {
                 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={""}/>
+                <link rel="preconnect" href={"https://use.typekit.net"} crossOrigin={""}/>
                 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;700&display=swap"
                       rel="stylesheet"/>
-                <link rel={'preload'} as={'font'} href={'/fonts/ABCMonumentGrotesk-Bold-Trial.woff2'} />
-                <link rel={'preload'} as={'font'} href={'/fonts/ABCMonumentGrotesk-Light-Trial.woff2'} />
+                <link rel="stylesheet" href="https://use.typekit.net/lpe1hvk.css" />
                 <title>rikaaa.org</title>
             </Head>
             <Header />
