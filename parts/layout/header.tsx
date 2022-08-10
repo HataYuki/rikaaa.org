@@ -3,14 +3,9 @@ import {useState, useEffect} from 'react'
 import Nav from "./nav";
 import Styles from '/styles/layout/header.module.sass'
 import clsx from 'clsx'
-import type {PostIndexList} from "../../lib/posts";
 import {useIsDark} from "../../lib/useIsDark";
 
-interface Props {
-    postIndexList: PostIndexList
-}
-
-const Header = ({postIndexList}: Props) => {
+const Header = () => {
     const router = useRouter()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const isDark = useIsDark()
@@ -72,7 +67,7 @@ const Header = ({postIndexList}: Props) => {
                     </div>
                 </div>
             </div>
-            <Nav postIndexList={postIndexList} isShow={isMenuOpen}/>
+            <Nav isShow={isMenuOpen}/>
         </header>
     )
 }

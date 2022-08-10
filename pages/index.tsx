@@ -13,32 +13,20 @@ import ImgBtn from "../parts/component/imgBtn";
 import Skill from "../parts/project/skill";
 import FadeIn from "../parts/component/fadeIn";
 import {BREAKPOINTS} from "../lib/breakpoints";
-import type {PostIndexList} from "../lib/posts";
-import {getPostIndexList} from "../lib/posts";
 import {useIsDark} from "../lib/useIsDark";
+import {useContext} from "react";
+import {AppContext} from "./_app";
 
-interface Props {
-    postIndexList: PostIndexList
-}
-
-export const getStaticProps: GetStaticProps<Props> = async () => {
-    const postIndexList = await getPostIndexList();
-    return {
-        props: {
-            postIndexList
-        }
-    }
-}
-
-const Index: NextPage<Props> = ({postIndexList}) => {
+const Index: NextPage = () => {
     const {minWidth} = useBreakpoint(BREAKPOINTS, 'win_small')
+    const {postIndexList} = useContext(AppContext)
     const projectList4 = postIndexList.filter(post => post.projectType === 'client').filter((post, i) => i < 4)
     const projectList3 = postIndexList.filter(post => post.projectType === 'client').filter((post, i) => i < 3)
     const myProjectList = postIndexList.filter(post => post.projectType === 'self').filter((post, i) => i < 3)
     const isDark = useIsDark()
 
     return (
-        <Doc postIndexList={postIndexList}>
+        <Doc>
             <section
                 className={clsx(
                     Styles.mainVisual,
@@ -53,7 +41,8 @@ const Index: NextPage<Props> = ({postIndexList}) => {
 
                         <FadeIn type={'fade'}>
                             <div className={clsx(Styles.mainVisual__video, Styles.absolute_autoCenter, Styles.br6)}>
-                                <video className={clsx(Styles.wh100)} autoPlay={true} playsInline={true} loop={true} muted={true} controls={false}>
+                                <video className={clsx(Styles.wh100)} autoPlay={true} playsInline={true} loop={true}
+                                       muted={true} controls={false}>
                                     <source src={'/mainVisual.mp4'} type={'video/mp4'}/>
                                     <source src={'/mainVisual.webm'} type={'video/webm'}/>
                                 </video>
@@ -105,7 +94,7 @@ const Index: NextPage<Props> = ({postIndexList}) => {
                         <Headline
                             level={2}
                             className={clsx(Styles.headline_fs_size, Styles.mw300, Styles.mb123)}
-                            barStyle={clsx({[Styles.bgColor_white]:isDark})}
+                            barStyle={clsx({[Styles.bgColor_white]: isDark})}
                         >
                             {{
                                 en: ('project'),
@@ -122,8 +111,8 @@ const Index: NextPage<Props> = ({postIndexList}) => {
                                 className={clsx(
                                     Styles.firstWork,
                                     Styles.mb76,
-                                    {[Styles.bgColor_gray]:!isDark},
-                                    {[Styles.bgColor_lightBlack]:isDark}
+                                    {[Styles.bgColor_gray]: !isDark},
+                                    {[Styles.bgColor_lightBlack]: isDark}
                                 )}
                                 extendLeftH={true}>
                                 {{
@@ -238,15 +227,15 @@ const Index: NextPage<Props> = ({postIndexList}) => {
                     Styles.mb200,
                     Styles.pb200,
                     Styles.pt200,
-                    {[Styles.bgColor_gray]:!isDark},
-                    {[Styles.bgColor_lightBlack]:isDark},
+                    {[Styles.bgColor_gray]: !isDark},
+                    {[Styles.bgColor_lightBlack]: isDark},
                 )}
             >
                 <FadeIn type={'fadeUp'}>
                     <Headline
                         level={2}
                         className={clsx(Styles.mw300, Styles.mb123, Styles.headline_fs_size)}
-                        barStyle={clsx({[Styles.bgColor_white]:isDark})}
+                        barStyle={clsx({[Styles.bgColor_white]: isDark})}
                     >
                         {{
                             en: ('vision'),
@@ -273,8 +262,8 @@ const Index: NextPage<Props> = ({postIndexList}) => {
                                             Styles.fontBold,
                                             Styles.text_center,
                                             Styles.visionTitle,
-                                            {[Styles.fontColor_darkGray]:!isDark},
-                                            {[Styles.fontColor_gray]:isDark}
+                                            {[Styles.fontColor_darkGray]: !isDark},
+                                            {[Styles.fontColor_gray]: isDark}
                                         )}
                                     >
                                         WHAT I <span className={clsx(Styles.fontColor_blue)}>DID</span>
@@ -303,8 +292,8 @@ const Index: NextPage<Props> = ({postIndexList}) => {
                                             Styles.fontBold,
                                             Styles.text_center,
                                             Styles.visionTitle,
-                                            {[Styles.fontColor_darkGray]:!isDark},
-                                            {[Styles.fontColor_gray]:isDark}
+                                            {[Styles.fontColor_darkGray]: !isDark},
+                                            {[Styles.fontColor_gray]: isDark}
                                         )}>
                                         WHAT I <span className={clsx(Styles.fontColor_blue)}>DO</span>
                                     </h2>
@@ -334,7 +323,7 @@ const Index: NextPage<Props> = ({postIndexList}) => {
                     <Headline
                         level={2}
                         className={clsx(Styles.mw300, Styles.mb123, Styles.headline_fs_size)}
-                        barStyle={clsx({[Styles.bgColor_white]:isDark})}
+                        barStyle={clsx({[Styles.bgColor_white]: isDark})}
                     >
                         {{
                             en: ('skill'),
@@ -350,7 +339,7 @@ const Index: NextPage<Props> = ({postIndexList}) => {
                     <Headline
                         level={2}
                         className={clsx(Styles.mw300, Styles.mb123, Styles.headline_fs_size)}
-                        barStyle={clsx({[Styles.bgColor_white]:isDark})}
+                        barStyle={clsx({[Styles.bgColor_white]: isDark})}
                     >
                         {{
                             en: ('my project'),
@@ -421,14 +410,14 @@ const Index: NextPage<Props> = ({postIndexList}) => {
                 className={clsx(
                     Styles.pb200,
                     Styles.pt200,
-                    {[Styles.bgColor_gray]:!isDark},
-                    {[Styles.bgColor_lightBlack]:isDark},
+                    {[Styles.bgColor_gray]: !isDark},
+                    {[Styles.bgColor_lightBlack]: isDark},
                 )}>
                 <FadeIn type={'fadeUp'}>
                     <Headline
                         level={2}
                         className={clsx(Styles.mw300, Styles.mb123, Styles.headline_fs_size)}
-                        barStyle={clsx({[Styles.bgColor_white]:isDark})}
+                        barStyle={clsx({[Styles.bgColor_white]: isDark})}
                     >
                         {{
                             en: ('link'),

@@ -6,8 +6,8 @@ import {Autoplay, EffectFade} from 'swiper'
 import Doc from "../../parts/layout/doc";
 import Image from 'next/image'
 import FadeIn from "../../parts/component/fadeIn";
-import type {Post, PostIndexList} from 'lib/posts'
-import {getPost, getPostIdSlugList, getPostIndexList} from "lib/posts";
+import type {Post} from 'lib/posts'
+import {getPost, getPostIdSlugList} from "lib/posts";
 import clsx from 'clsx'
 import Headline from "../../parts/component/headline";
 import LineText from "../../parts/component/lineText";
@@ -17,7 +17,6 @@ import {useIsDark} from "../../lib/useIsDark";
 
 interface Props {
     post: Post
-    postIndexList: PostIndexList
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -39,16 +38,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
     }
 
     const post = await getPost(id)
-    const postIndexList = await getPostIndexList()
     return {
         props: {
             post: post,
-            postIndexList: postIndexList
         }
     }
 }
 
-const Slug: NextPage<Props> = ({post, postIndexList}) => {
+const Slug: NextPage<Props> = ({post}: Props) => {
     const eyeCatch = post.eyeCatch;
     const [swiperBullet, setSwiperBullet] = useState<boolean[]>((eyeCatch && eyeCatch.length) ? eyeCatch.map(() => false) : [])
     const isDark = useIsDark()
@@ -62,7 +59,7 @@ const Slug: NextPage<Props> = ({post, postIndexList}) => {
                             <FadeIn type={'fadeUp'}>
                                 <Headline level={2}
                                           className={clsx(Styles.mw300, Styles.mb123, Styles.headline_fs_size)}
-                                          barStyle={clsx({[Styles.bgColor_white]:isDark})}
+                                          barStyle={clsx({[Styles.bgColor_white]: isDark})}
                                 >
                                     {{
                                         en: ('environment'),
@@ -80,8 +77,8 @@ const Slug: NextPage<Props> = ({post, postIndexList}) => {
                                                     className={clsx(
                                                         Styles.mb17,
                                                         Styles.env__item,
-                                                        {[Styles.bgColor_gray]:!isDark},
-                                                        {[Styles.bgColor_lightBlack]:isDark},
+                                                        {[Styles.bgColor_gray]: !isDark},
+                                                        {[Styles.bgColor_lightBlack]: isDark},
                                                     )}
                                                     key={i}>
                                                     {
@@ -102,7 +99,7 @@ const Slug: NextPage<Props> = ({post, postIndexList}) => {
     }
 
     return (
-        <Doc postIndexList={postIndexList}>
+        <Doc>
             <section
                 className={clsx(
                     Styles.mb200,
@@ -144,7 +141,7 @@ const Slug: NextPage<Props> = ({post, postIndexList}) => {
                                     </div>
                                     <Swiper
                                         className={clsx(Styles.mb46)}
-                                        modules={[Autoplay,EffectFade]}
+                                        modules={[Autoplay, EffectFade]}
                                         spaceBetween={0}
                                         loop={true}
                                         speed={600}
